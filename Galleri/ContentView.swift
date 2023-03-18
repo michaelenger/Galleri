@@ -1,5 +1,5 @@
 //
-//  MainView.swift
+//  ContentView.swift
 //  Galleri
 //
 //  Created by Michael Enger on 18/03/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MainView: View {
+struct ContentView: View {
     @EnvironmentObject var dataStore: DataStore
 
     var body: some View {
@@ -32,16 +32,16 @@ struct MainView: View {
     }
 }
 
-struct MainView_Previews: PreviewProvider {
+struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        ContentView()
             .environmentObject({ () -> DataStore in
                 let envObj = DataStore()
                 envObj.currentImageUrl = URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg")
                 return envObj
             }() )
             .frame(width: 300.0, height: 300.0)
-        MainView()
+        ContentView()
             .environmentObject(DataStore())
             .frame(width: 300.0, height: 300.0)
     }

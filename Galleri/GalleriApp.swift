@@ -13,7 +13,7 @@ struct GalleriApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainView()
+            ContentView()
         }
     }
 }
