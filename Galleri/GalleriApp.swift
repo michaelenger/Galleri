@@ -11,7 +11,7 @@ import SwiftUI
 struct GalleriApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(filePath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg")
         }
     }
 }
