@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct MainView: View {
-    var filePath: String?
+    @EnvironmentObject var dataStore: DataStore
 
     var body: some View {
         VStack {
-            if self.filePath != nil {
-                MediaView(filePath: filePath!)
+            if dataStore.currentImageUrl != nil {
+                MediaView(imageUrl: dataStore.currentImageUrl!)
             } else {
                 VStack {
                     Image(systemName: "photo")
@@ -34,9 +34,15 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(filePath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg")
+        MainView()
+            .environmentObject({ () -> DataStore in
+                let envObj = DataStore()
+                envObj.currentImageUrl = URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg")
+                return envObj
+            }() )
             .frame(width: 300.0, height: 300.0)
         MainView()
+            .environmentObject(DataStore())
             .frame(width: 300.0, height: 300.0)
     }
 }

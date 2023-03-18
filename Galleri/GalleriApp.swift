@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct GalleriApp: App {
+    @StateObject var dataStore = DataStore()
+
     var body: some Scene {
         WindowGroup {
-            MainView(filePath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg")
+            MainView()
         }
     }
 }
