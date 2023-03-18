@@ -21,6 +21,7 @@ struct GalleriApp: App {
         }
         .commands() {
             FileCommands(dataStore: dataStore)
+            GoCommands(dataStore: dataStore)
         }
     }
 }
