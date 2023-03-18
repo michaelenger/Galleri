@@ -44,6 +44,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39C8F93629C679AA00EAD3FC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				39CA964129C63C780094D2C4 /* ContentView.swift */,
+				39CA963429C6292C0094D2C4 /* MediaView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		39C8F93729C679B800EAD3FC /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				39C8F93429C6725D00EAD3FC /* HotKeys.swift */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		39C8F93829C679CA00EAD3FC /* Main Menu */ = {
+			isa = PBXGroup;
+			children = (
+				39C8F92D29C653E900EAD3FC /* FileCommands.swift */,
+			);
+			path = "Main Menu";
+			sourceTree = "<group>";
+		};
+		39C8F93929C679E300EAD3FC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				39C8F92F29C6571F00EAD3FC /* DataStore.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		39CA962629C6292B0094D2C4 = {
 			isa = PBXGroup;
 			children = (
@@ -63,17 +96,16 @@
 		39CA963129C6292B0094D2C4 /* Galleri */ = {
 			isa = PBXGroup;
 			children = (
-				39C8F92F29C6571F00EAD3FC /* DataStore.swift */,
-				39C8F92D29C653E900EAD3FC /* FileCommands.swift */,
-				39CA964129C63C780094D2C4 /* ContentView.swift */,
+				39C8F93729C679B800EAD3FC /* Lib */,
+				39C8F93829C679CA00EAD3FC /* Main Menu */,
+				39C8F93929C679E300EAD3FC /* Models */,
+				39C8F93629C679AA00EAD3FC /* Views */,
 				39CA963229C6292C0094D2C4 /* GalleriApp.swift */,
-				39CA963429C6292C0094D2C4 /* MediaView.swift */,
 				39CA963629C6292D0094D2C4 /* Assets.xcassets */,
 				39CA963B29C6292D0094D2C4 /* Galleri.entitlements */,
 				39CA963829C6292D0094D2C4 /* Preview Content */,
 				39C8F93129C65FB200EAD3FC /* README.md */,
 				39C8F93229C6600A00EAD3FC /* LICENSE */,
-				39C8F93429C6725D00EAD3FC /* HotKeys.swift */,
 			);
 			path = Galleri;
 			sourceTree = "<group>";
