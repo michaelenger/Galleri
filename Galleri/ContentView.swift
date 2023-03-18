@@ -29,6 +29,14 @@ struct ContentView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment:.center)
         .background(.black)
+        .addCustomHotkeys([
+            HotkeyCombination(keyBase: [], key: .kVK_LeftArrow ) {
+                dataStore.previousImage()
+            },
+            HotkeyCombination(keyBase: [], key: .kVK_RightArrow) {
+                dataStore.nextImage()
+            }
+        ])
     }
 }
 

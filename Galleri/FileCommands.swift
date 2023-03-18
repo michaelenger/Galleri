@@ -18,12 +18,14 @@ struct FileCommands: Commands {
             Button("Open...") {
                 let openPanel = NSOpenPanel()
                 openPanel.allowedContentTypes = [.image]
-                openPanel.allowsMultipleSelection = false
+                openPanel.allowsMultipleSelection = true
                 openPanel.canChooseDirectories = false
                 openPanel.canChooseFiles = true
 
                 let response = openPanel.runModal()
-                dataStore.currentImageUrl = response == .OK ? openPanel.url : nil
+                if response == .OK {
+                    dataStore.setImages(urls: openPanel.urls)
+                }
             }.keyboardShortcut("o")
 
             Divider()
