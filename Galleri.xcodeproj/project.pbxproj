@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		39C8F93029C6571F00EAD3FC /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C8F92F29C6571F00EAD3FC /* DataStore.swift */; };
+		39C8F93329C6600A00EAD3FC /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 39C8F93229C6600A00EAD3FC /* LICENSE */; };
 		39CA963329C6292C0094D2C4 /* GalleriApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA963229C6292C0094D2C4 /* GalleriApp.swift */; };
 		39CA963529C6292C0094D2C4 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA963429C6292C0094D2C4 /* MediaView.swift */; };
 		39CA963729C6292D0094D2C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39CA963629C6292D0094D2C4 /* Assets.xcassets */; };
@@ -17,6 +18,8 @@
 
 /* Begin PBXFileReference section */
 		39C8F92F29C6571F00EAD3FC /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		39C8F93129C65FB200EAD3FC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		39C8F93229C6600A00EAD3FC /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		39CA962F29C6292B0094D2C4 /* Galleri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Galleri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39CA963229C6292C0094D2C4 /* GalleriApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleriApp.swift; sourceTree = "<group>"; };
 		39CA963429C6292C0094D2C4 /* MediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
@@ -63,6 +66,8 @@
 				39CA963629C6292D0094D2C4 /* Assets.xcassets */,
 				39CA963B29C6292D0094D2C4 /* Galleri.entitlements */,
 				39CA963829C6292D0094D2C4 /* Preview Content */,
+				39C8F93129C65FB200EAD3FC /* README.md */,
+				39C8F93229C6600A00EAD3FC /* LICENSE */,
 			);
 			path = Galleri;
 			sourceTree = "<group>";
@@ -133,6 +138,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39C8F93329C6600A00EAD3FC /* LICENSE in Resources */,
 				39CA963A29C6292D0094D2C4 /* Preview Assets.xcassets in Resources */,
 				39CA963729C6292D0094D2C4 /* Assets.xcassets in Resources */,
 			);
