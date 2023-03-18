@@ -12,9 +12,12 @@ struct GalleriApp: App {
     @StateObject var dataStore = DataStore()
 
     var body: some Scene {
-        WindowGroup {
+        Window("Galleri", id: "main") {
             ContentView()
                 .environmentObject(dataStore)
+                .onAppear {
+                    NSWindow.allowsAutomaticWindowTabbing = false
+                }
         }
         .commands() {
             FileCommands(dataStore: dataStore)

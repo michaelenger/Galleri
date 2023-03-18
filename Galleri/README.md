@@ -4,6 +4,6 @@ Basic image viewer for macOS.
 
 ## TODO
 
-* Handle multiple windows/tabs. Alternatively remove ability to have multiple windows/tabs.
+* Handle multiple windows.
 * Support animated GIFs.
 * Support videos?
