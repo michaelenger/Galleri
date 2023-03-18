@@ -8,18 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		39CA963329C6292C0094D2C4 /* GalleriApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA963229C6292C0094D2C4 /* GalleriApp.swift */; };
-		39CA963529C6292C0094D2C4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA963429C6292C0094D2C4 /* ContentView.swift */; };
+		39CA963529C6292C0094D2C4 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA963429C6292C0094D2C4 /* MediaView.swift */; };
 		39CA963729C6292D0094D2C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39CA963629C6292D0094D2C4 /* Assets.xcassets */; };
 		39CA963A29C6292D0094D2C4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39CA963929C6292D0094D2C4 /* Preview Assets.xcassets */; };
+		39CA964229C63C780094D2C4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA964129C63C780094D2C4 /* MainView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		39CA962F29C6292B0094D2C4 /* Galleri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Galleri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39CA963229C6292C0094D2C4 /* GalleriApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleriApp.swift; sourceTree = "<group>"; };
-		39CA963429C6292C0094D2C4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		39CA963429C6292C0094D2C4 /* MediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
 		39CA963629C6292D0094D2C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		39CA963929C6292D0094D2C4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		39CA963B29C6292D0094D2C4 /* Galleri.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Galleri.entitlements; sourceTree = "<group>"; };
+		39CA964129C63C780094D2C4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +55,8 @@
 			isa = PBXGroup;
 			children = (
 				39CA963229C6292C0094D2C4 /* GalleriApp.swift */,
-				39CA963429C6292C0094D2C4 /* ContentView.swift */,
+				39CA964129C63C780094D2C4 /* MainView.swift */,
+				39CA963429C6292C0094D2C4 /* MediaView.swift */,
 				39CA963629C6292D0094D2C4 /* Assets.xcassets */,
 				39CA963B29C6292D0094D2C4 /* Galleri.entitlements */,
 				39CA963829C6292D0094D2C4 /* Preview Content */,
@@ -139,7 +142,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39CA963529C6292C0094D2C4 /* ContentView.swift in Sources */,
+				39CA963529C6292C0094D2C4 /* MediaView.swift in Sources */,
+				39CA964229C63C780094D2C4 /* MainView.swift in Sources */,
 				39CA963329C6292C0094D2C4 /* GalleriApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
