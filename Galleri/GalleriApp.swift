@@ -14,6 +14,7 @@ struct GalleriApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(dataStore)
         }
     }
 }
