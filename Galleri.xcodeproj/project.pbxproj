@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39C8F92E29C653E900EAD3FC /* FileCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C8F92D29C653E900EAD3FC /* FileCommands.swift */; };
 		39C8F93029C6571F00EAD3FC /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C8F92F29C6571F00EAD3FC /* DataStore.swift */; };
 		39C8F93329C6600A00EAD3FC /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 39C8F93229C6600A00EAD3FC /* LICENSE */; };
 		39CA963329C6292C0094D2C4 /* GalleriApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CA963229C6292C0094D2C4 /* GalleriApp.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		39C8F92D29C653E900EAD3FC /* FileCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCommands.swift; sourceTree = "<group>"; };
 		39C8F92F29C6571F00EAD3FC /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		39C8F93129C65FB200EAD3FC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		39C8F93229C6600A00EAD3FC /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				39C8F92F29C6571F00EAD3FC /* DataStore.swift */,
+				39C8F92D29C653E900EAD3FC /* FileCommands.swift */,
 				39CA964129C63C780094D2C4 /* ContentView.swift */,
 				39CA963229C6292C0094D2C4 /* GalleriApp.swift */,
 				39CA963429C6292C0094D2C4 /* MediaView.swift */,
@@ -155,6 +158,7 @@
 				39CA963529C6292C0094D2C4 /* MediaView.swift in Sources */,
 				39CA964229C63C780094D2C4 /* ContentView.swift in Sources */,
 				39CA963329C6292C0094D2C4 /* GalleriApp.swift in Sources */,
+				39C8F92E29C653E900EAD3FC /* FileCommands.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

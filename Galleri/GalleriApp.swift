@@ -16,5 +16,8 @@ struct GalleriApp: App {
             ContentView()
                 .environmentObject(dataStore)
         }
+        .commands() {
+            FileCommands(dataStore: dataStore)
+        }
     }
 }
