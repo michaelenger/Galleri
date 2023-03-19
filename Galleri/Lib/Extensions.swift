@@ -27,12 +27,7 @@ extension URL {
         let contentType = try? resourceValues(forKeys: [.contentTypeKey]).contentType
 
         return contentType?.identifier
-    }
-
-    var creationDate: Date? {
-        let attributes = try? FileManager.default.attributesOfItem(atPath: self.path(percentEncoded: false))
-        return attributes?[FileAttributeKey.creationDate] as! Date?
-    }
+    }    
 
     /// Whether the resource is an image.
     var isImage: Bool {
@@ -45,11 +40,5 @@ extension URL {
         }
 
         return false
-    }
-
-    /// Size of the file pointed to by the URL.
-    var size: Float {
-        let attributes = try? FileManager.default.attributesOfItem(atPath: self.path(percentEncoded: false))
-        return (attributes?[FileAttributeKey.size] as! NSNumber).floatValue
     }
 }

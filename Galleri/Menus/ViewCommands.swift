@@ -15,7 +15,7 @@ struct ViewCommands: Commands {
 
     /// Side-effects for when the soryBy setting changes.
     func sortByChanged(to value: SortOrder) {
-        dataStore.sortMedia()
+        dataStore.sortMediaItems()
     }
 
     var body: some Commands {
