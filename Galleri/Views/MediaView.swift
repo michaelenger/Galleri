@@ -8,15 +8,10 @@
 import SwiftUI
 
 struct MediaView: View {
-    var image: NSImage
-
-    init(mediaUrl: URL) {
-        // TODO handle other media types
-        self.image = NSImage(contentsOf: mediaUrl)!
-    }
+    var media: Media
 
     var body: some View {
-        Image(nsImage: self.image)
+        Image(nsImage: self.media.image!)
             .resizable()
             .aspectRatio(contentMode: .fit)
     }
@@ -24,7 +19,7 @@ struct MediaView: View {
 
 struct MediaView_Previews: PreviewProvider {
     static var previews: some View {
-        MediaView(mediaUrl: URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg"))
+        MediaView(media: Media(URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg")))
             .frame(width: 200.0, height: 200.0)
     }
 }

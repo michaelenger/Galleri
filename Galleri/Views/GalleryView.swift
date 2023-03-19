@@ -12,8 +12,8 @@ struct GalleryView: View {
 
     var body: some View {
         VStack {
-            if dataStore.currentMediaUrl != nil {
-                MediaView(mediaUrl: dataStore.currentMediaUrl!)
+            if dataStore.currentMedia != nil {
+                MediaView(media: dataStore.currentMedia!)
             } else {
                 VStack {
                     Image(systemName: "photo.stack")

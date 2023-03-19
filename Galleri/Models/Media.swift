@@ -5,20 +5,24 @@
 //  Created by Michael Enger on 19/03/2023.
 //
 
-import Foundation
+import SwiftUI
 
 /// A media item.
-struct Media: Identifiable, Codable {
+struct Media: Identifiable {
     /// ID of the media item,
     public private(set) var id: UUID
 
     /// URL used to load the media item.
     public private(set) var url: URL
 
+    /// Image representation of the media item.
+    public private(set) var image: NSImage?
+
     /// Create a new media item based on a given URL.
     init(_ url: URL) {
         self.id = UUID()
         self.url = url
+        self.image = NSImage(contentsOf: url)
     }
 
     /// Creation date of the media file.

@@ -12,10 +12,10 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
     @AppStorage("sortBy") var sortBy = DefaultSettings.sortBy
 
     /// URL of the current media.
-    @Published var currentMediaUrl: URL? = nil
+    @Published var currentMedia: Media? = nil
 
     /// List of media.
-    private var mediaItems: [Media] = []
+    @Published var mediaItems: [Media] = []
 
     /// Whether there are any media.
     var hasMedia: Bool {
@@ -45,8 +45,8 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
     /// Change the current media index to a specified value.
     private func changeMediaIndex(to targetIndex: Int) {
         currentIndex = targetIndex
-        if currentMediaUrl != mediaItems[currentIndex].url {
-            currentMediaUrl = mediaItems[currentIndex].url // only update if absolutely necessary
+        if currentMedia?.id != mediaItems[currentIndex].id {
+            currentMedia = mediaItems[currentIndex] // only update if absolutely necessary
         }
     }
 
@@ -120,7 +120,7 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
         })
 
         sortMediaItems()
-        currentMediaUrl = mediaItems.count != 0 ? mediaItems[currentIndex].url : nil
+        currentMedia = mediaItems.count != 0 ? mediaItems[currentIndex] : nil
     }
 
     /// Sort the media list based on the sort order.
