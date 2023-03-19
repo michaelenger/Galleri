@@ -25,6 +25,7 @@ struct GalleriApp: App {
             FileCommands(dataStore: dataStore)
             ViewCommands(dataStore: dataStore)
             GoCommands(dataStore: dataStore)
+            SidebarCommands()
         }
         .handlesExternalEvents(matching: Set(arrayLiteral: "*"))
     }
