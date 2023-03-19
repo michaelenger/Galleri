@@ -13,22 +13,20 @@ struct FileCommands: Commands {
 
     var body: some Commands {
         CommandGroup(after: .newItem) {
-            Divider()
+            Section {
+                Button("Open...") {
+                    let openPanel = NSOpenPanel()
+                    openPanel.allowedContentTypes = [.image]
+                    openPanel.allowsMultipleSelection = true
+                    openPanel.canChooseDirectories = true
+                    openPanel.canChooseFiles = true
 
-            Button("Open...") {
-                let openPanel = NSOpenPanel()
-                openPanel.allowedContentTypes = [.image]
-                openPanel.allowsMultipleSelection = true
-                openPanel.canChooseDirectories = true
-                openPanel.canChooseFiles = true
-
-                let response = openPanel.runModal()
-                if response == .OK {
-                    dataStore.loadMedia(from: openPanel.urls)
-                }
-            }.keyboardShortcut("o")
-
-            Divider()
+                    let response = openPanel.runModal()
+                    if response == .OK {
+                        dataStore.loadMedia(from: openPanel.urls)
+                    }
+                }.keyboardShortcut("o")
+            }
         }
     }
 }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3950E81929C73CE600407635 /* ViewCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3950E81829C73CE600407635 /* ViewCommands.swift */; };
+		3950E81B29C7407E00407635 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3950E81A29C7407E00407635 /* Settings.swift */; };
 		39C8F92E29C653E900EAD3FC /* FileCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C8F92D29C653E900EAD3FC /* FileCommands.swift */; };
 		39C8F93029C6571F00EAD3FC /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C8F92F29C6571F00EAD3FC /* DataStore.swift */; };
 		39C8F93329C6600A00EAD3FC /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 39C8F93229C6600A00EAD3FC /* LICENSE */; };
@@ -21,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3950E81829C73CE600407635 /* ViewCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCommands.swift; sourceTree = "<group>"; };
+		3950E81A29C7407E00407635 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		39C8F92D29C653E900EAD3FC /* FileCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCommands.swift; sourceTree = "<group>"; };
 		39C8F92F29C6571F00EAD3FC /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		39C8F93129C65FB200EAD3FC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 			children = (
 				39C8F92D29C653E900EAD3FC /* FileCommands.swift */,
 				39C8F93A29C67AE900EAD3FC /* GoCommands.swift */,
+				3950E81829C73CE600407635 /* ViewCommands.swift */,
 			);
 			path = Menus;
 			sourceTree = "<group>";
@@ -80,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				39C8F92F29C6571F00EAD3FC /* DataStore.swift */,
+				3950E81A29C7407E00407635 /* Settings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -197,8 +203,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3950E81B29C7407E00407635 /* Settings.swift in Sources */,
 				39C8F93029C6571F00EAD3FC /* DataStore.swift in Sources */,
 				39CA963529C6292C0094D2C4 /* MediaView.swift in Sources */,
+				3950E81929C73CE600407635 /* ViewCommands.swift in Sources */,
 				39CA964229C63C780094D2C4 /* ContentView.swift in Sources */,
 				39C8F93D29C6868300EAD3FC /* Extensions.swift in Sources */,
 				39CA963329C6292C0094D2C4 /* GalleriApp.swift in Sources */,

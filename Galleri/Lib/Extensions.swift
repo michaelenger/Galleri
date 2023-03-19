@@ -5,7 +5,20 @@
 //  Created by Michael Enger on 18/03/2023.
 //
 
-import Foundation
+import SwiftUI
+
+// From: https://www.hackingwithswift.com/quick-start/swiftui/how-to-run-some-code-when-state-changes-using-onchange
+extension Binding {
+    func onChange(_ handler: @escaping (Value) -> Void) -> Binding<Value> {
+        Binding(
+            get: { self.wrappedValue },
+            set: { newValue in
+                self.wrappedValue = newValue
+                handler(newValue)
+            }
+        )
+    }
+}
 
 // Inspired by: https://stackoverflow.com/a/27722526
 extension URL {

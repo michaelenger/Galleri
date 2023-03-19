@@ -9,6 +9,8 @@ import SwiftUI
 
 /// Data store for the application. Expected to be used as an EnvironmentObject.
 class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
+    @AppStorage("sortBy") var sortBy = DefaultSettings.sortBy
+
     /// URL of the current media.
     @Published var currentMediaUrl: URL? = nil
 
@@ -112,11 +114,25 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
             }
         }
 
-        // TODO allow users to choose how to sort
-        mediaUrls.sort(by: { a, b in
-            return a.path(percentEncoded: false) < b.path(percentEncoded: false)
-        })
-
+        sortMedia()
         currentMediaUrl = mediaUrls.count != 0 ? mediaUrls[currentIndex] : nil
+    }
+
+    /// Sort the media list based on the sort order.
+    func sortMedia() {
+        if mediaUrls.count < 2 {
+            return // nothing to do here
+        }
+
+        // TODO maintain index position?
+
+        switch (sortBy) {
+        case .name:
+            mediaUrls.sort(by: { a, b in
+                return a.path(percentEncoded: false) < b.path(percentEncoded: false)
+            })
+        default:
+            print("Unhandled sort order: \(sortBy)")
+        }
     }
 }
