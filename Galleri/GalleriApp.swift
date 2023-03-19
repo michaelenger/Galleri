@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct GalleriApp: App {
-    @StateObject var dataStore = DataStore()
+    @NSApplicationDelegateAdaptor(DataStore.self) var dataStore
 
     var body: some Scene {
         Window("Galleri", id: "main") {
@@ -18,10 +18,12 @@ struct GalleriApp: App {
                 .onAppear {
                     NSWindow.allowsAutomaticWindowTabbing = false
                 }
+                //.handlesExternalEvents(preferring: Set(arrayLiteral: "pause"), allowing: Set(arrayLiteral: "*"))  // not sure if this is needed
         }
         .commands() {
             FileCommands(dataStore: dataStore)
             GoCommands(dataStore: dataStore)
         }
+        .handlesExternalEvents(matching: Set(arrayLiteral: "*"))
     }
 }

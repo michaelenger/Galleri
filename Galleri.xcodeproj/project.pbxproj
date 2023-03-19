@@ -28,6 +28,7 @@
 		39C8F93429C6725D00EAD3FC /* HotKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeys.swift; sourceTree = "<group>"; };
 		39C8F93A29C67AE900EAD3FC /* GoCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoCommands.swift; sourceTree = "<group>"; };
 		39C8F93C29C6868200EAD3FC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		39C8F93E29C720F200EAD3FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		39CA962F29C6292B0094D2C4 /* Galleri.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Galleri.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		39CA963229C6292C0094D2C4 /* GalleriApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleriApp.swift; sourceTree = "<group>"; };
 		39CA963429C6292C0094D2C4 /* MediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
@@ -102,6 +103,7 @@
 		39CA963129C6292B0094D2C4 /* Galleri */ = {
 			isa = PBXGroup;
 			children = (
+				39C8F93E29C720F200EAD3FC /* Info.plist */,
 				39C8F93729C679B800EAD3FC /* Lib */,
 				39C8F93829C679CA00EAD3FC /* Menus */,
 				39C8F93929C679E300EAD3FC /* Models */,
@@ -336,6 +338,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Galleri/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -363,6 +366,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Galleri/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

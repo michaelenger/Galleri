@@ -5,10 +5,10 @@
 //  Created by Michael Enger on 18/03/2023.
 //
 
-import Foundation
+import SwiftUI
 
 /// Data store for the application. Expected to be used as an EnvironmentObject.
-class DataStore: ObservableObject {
+class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
     /// URL of the current media.
     @Published var currentMediaUrl: URL? = nil
 
@@ -71,6 +71,11 @@ class DataStore: ObservableObject {
         }
     }
 
+    /// Handle drag-events to the dock icon.
+    func application(_ application: NSApplication, open urls: [URL]) {
+        loadMedia(from: urls)
+    }
+
     /// Go to the first media.
     func firstMedia() {
         changeMedia(to: 0)
@@ -102,7 +107,7 @@ class DataStore: ObservableObject {
         for url in urls {
             if url.hasDirectoryPath {
                 fillMedia(from: url)
-            } else {
+            } else if url.isImage {
                 mediaUrls.append(url)
             }
         }
