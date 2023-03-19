@@ -1,6 +1,6 @@
 #  Galleri
 
-Basic image viewer for macOS.
+Basic image gallery for macOS.
 
 ## TODO
 

@@ -10,9 +10,9 @@ import SwiftUI
 struct MediaView: View {
     var image: NSImage
 
-    init(imageUrl: URL) {
+    init(mediaUrl: URL) {
         // TODO handle other media types
-        self.image = NSImage(contentsOf: imageUrl)!
+        self.image = NSImage(contentsOf: mediaUrl)!
     }
 
     var body: some View {
@@ -24,7 +24,7 @@ struct MediaView: View {
 
 struct MediaView_Previews: PreviewProvider {
     static var previews: some View {
-        MediaView(imageUrl: URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg"))
+        MediaView(mediaUrl: URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg"))
             .frame(width: 200.0, height: 200.0)
     }
 }

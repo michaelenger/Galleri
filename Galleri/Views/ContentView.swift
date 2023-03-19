@@ -12,8 +12,8 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            if dataStore.currentImageUrl != nil {
-                MediaView(imageUrl: dataStore.currentImageUrl!)
+            if dataStore.currentMediaUrl != nil {
+                MediaView(mediaUrl: dataStore.currentMediaUrl!)
             } else {
                 VStack {
                     Image(systemName: "photo")
@@ -31,10 +31,10 @@ struct ContentView: View {
         .background(.black)
         .addCustomHotkeys([
             HotkeyCombination(keyBase: [], key: .kVK_LeftArrow ) {
-                dataStore.previousImage()
+                dataStore.previousMedia()
             },
             HotkeyCombination(keyBase: [], key: .kVK_RightArrow) {
-                dataStore.nextImage()
+                dataStore.nextMedia()
             }
         ])
     }
@@ -45,7 +45,7 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
             .environmentObject({ () -> DataStore in
                 let envObj = DataStore()
-                envObj.currentImageUrl = URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg")
+                envObj.currentMediaUrl = URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg")
                 return envObj
             }() )
             .frame(width: 300.0, height: 300.0)

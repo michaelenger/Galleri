@@ -14,27 +14,27 @@ struct GoCommands: Commands {
     var body: some Commands {
         CommandMenu("Go") {
             Button("Next") {
-                dataStore.nextImage()
+                dataStore.nextMedia()
             }
-            .disabled(!dataStore.hasImages)
+            .disabled(!dataStore.hasMedia)
             .keyboardShortcut(.downArrow, modifiers: [])
 
             Button("Previous") {
-                dataStore.previousImage()
+                dataStore.previousMedia()
             }
-            .disabled(!dataStore.hasImages)
+            .disabled(!dataStore.hasMedia)
             .keyboardShortcut(.upArrow, modifiers: [])
 
             Button("First") {
-                dataStore.firstImage()
+                dataStore.firstMedia()
             }
-            .disabled(!dataStore.hasImages)
+            .disabled(!dataStore.hasMedia)
             .keyboardShortcut(.home, modifiers: [])
 
             Button("Last") {
-                dataStore.lastImage()
+                dataStore.lastMedia()
             }
-            .disabled(!dataStore.hasImages)
+            .disabled(!dataStore.hasMedia)
             .keyboardShortcut(.end, modifiers: [])
         }
     }

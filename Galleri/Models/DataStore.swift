@@ -9,44 +9,44 @@ import Foundation
 
 /// Data store for the application. Expected to be used as an EnvironmentObject.
 class DataStore: ObservableObject {
-    /// URL of the current image.
-    @Published var currentImageUrl: URL? = nil
+    /// URL of the current media.
+    @Published var currentMediaUrl: URL? = nil
 
-    /// Whether there are any images.
-    var hasImages: Bool {
-        get { return imageUrls.count != 0 }
+    /// Whether there are any media.
+    var hasMedia: Bool {
+        get { return mediaUrls.count != 0 }
     }
 
-    /// All available images.
-    private var imageUrls: [URL] = []
+    /// All available media.
+    private var mediaUrls: [URL] = []
 
-    /// Index of the current image.
+    /// Index of the current media.
     private var currentIndex: Int = 0
 
-    /// Change the current image index by a given amount.
-    private func changeImage(by indexChangeAmount: Int) {
-        if imageUrls.count == 0 {
+    /// Change the current media index by a given amount.
+    private func changeMedia(by indexChangeAmount: Int) {
+        if mediaUrls.count == 0 {
             return // nothing to do here
         }
 
         currentIndex += indexChangeAmount
 
-        if currentIndex >= imageUrls.count {
-            currentIndex -= imageUrls.count
+        if currentIndex >= mediaUrls.count {
+            currentIndex -= mediaUrls.count
         } else if currentIndex < 0 {
-            currentIndex += imageUrls.count
+            currentIndex += mediaUrls.count
         }
 
-        if currentImageUrl != imageUrls[currentIndex] {
-            currentImageUrl = imageUrls[currentIndex] // only update if absolutely necessary
+        if currentMediaUrl != mediaUrls[currentIndex] {
+            currentMediaUrl = mediaUrls[currentIndex] // only update if absolutely necessary
         }
     }
 
-    /// Change the current image index to a specified value.
-    private func changeImage(to targetIndex: Int) {
+    /// Change the current media index to a specified value.
+    private func changeMedia(to targetIndex: Int) {
         currentIndex = targetIndex
-        if currentImageUrl != imageUrls[currentIndex] {
-            currentImageUrl = imageUrls[currentIndex] // only update if absolutely necessary
+        if currentMediaUrl != mediaUrls[currentIndex] {
+            currentMediaUrl = mediaUrls[currentIndex] // only update if absolutely necessary
         }
     }
 
@@ -65,53 +65,53 @@ class DataStore: ObservableObject {
                 fillMedia(from: item)
             } else {
                 if item.isImage {
-                    imageUrls.append(item)
+                    mediaUrls.append(item)
                 }
             }
         }
     }
 
-    /// Go to the first image.
-    func firstImage() {
-        changeImage(to: 0)
+    /// Go to the first media.
+    func firstMedia() {
+        changeMedia(to: 0)
     }
 
-    /// Go to the last image.
-    func lastImage() {
-        let targetIndex = imageUrls.count != 0 ? (imageUrls.count - 1) : 0
-        changeImage(to: targetIndex)
+    /// Go to the last media.
+    func lastMedia() {
+        let targetIndex = mediaUrls.count != 0 ? (mediaUrls.count - 1) : 0
+        changeMedia(to: targetIndex)
     }
 
-    /// Go to the next image.
-    func nextImage() {
-        changeImage(by: +1)
+    /// Go to the next media.
+    func nextMedia() {
+        changeMedia(by: +1)
     }
 
-    /// Go to the previous image.
-    func previousImage() {
-        changeImage(by: -1)
+    /// Go to the previous media.
+    func previousMedia() {
+        changeMedia(by: -1)
     }
 
-    /// Set a list of images based on the files and directories provided.
+    /// Set a list of media based on the files and directories provided.
     ///
     /// This will iterate through the provided URLs and add any supported media to the media list. If the URL is a directory it will recursively go through it and fill the media list with anything it can find.
-    func setImages(from urls: [URL]) {
-        imageUrls = []
+    func loadMedia(from urls: [URL]) {
+        mediaUrls = []
         currentIndex = 0
 
         for url in urls {
             if url.hasDirectoryPath {
                 fillMedia(from: url)
             } else {
-                imageUrls.append(url)
+                mediaUrls.append(url)
             }
         }
 
         // TODO allow users to choose how to sort
-        imageUrls.sort(by: { a, b in
+        mediaUrls.sort(by: { a, b in
             return a.path(percentEncoded: false) < b.path(percentEncoded: false)
         })
 
-        currentImageUrl = imageUrls.count != 0 ? imageUrls[currentIndex] : nil
+        currentMediaUrl = mediaUrls.count != 0 ? mediaUrls[currentIndex] : nil
     }
 }

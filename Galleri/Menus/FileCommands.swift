@@ -24,7 +24,7 @@ struct FileCommands: Commands {
 
                 let response = openPanel.runModal()
                 if response == .OK {
-                    dataStore.setImages(from: openPanel.urls)
+                    dataStore.loadMedia(from: openPanel.urls)
                 }
             }.keyboardShortcut("o")
 
