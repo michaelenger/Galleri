@@ -31,10 +31,10 @@ struct ContentView: View {
         .background(.black)
         .addCustomHotkeys([
             HotkeyCombination(keyBase: [], key: .kVK_LeftArrow ) {
-                dataStore.previousMedia()
+                dataStore.goToPrevious()
             },
             HotkeyCombination(keyBase: [], key: .kVK_RightArrow) {
-                dataStore.nextMedia()
+                dataStore.goToNext()
             }
         ])
     }

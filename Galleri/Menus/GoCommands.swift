@@ -14,25 +14,25 @@ struct GoCommands: Commands {
     var body: some Commands {
         CommandMenu("Go") {
             Button("Next") {
-                dataStore.nextMedia()
+                dataStore.goToNext()
             }
             .disabled(!dataStore.hasMedia)
             .keyboardShortcut(.downArrow, modifiers: [])
 
             Button("Previous") {
-                dataStore.previousMedia()
+                dataStore.goToPrevious()
             }
             .disabled(!dataStore.hasMedia)
             .keyboardShortcut(.upArrow, modifiers: [])
 
             Button("First") {
-                dataStore.firstMedia()
+                dataStore.goToFirst()
             }
             .disabled(!dataStore.hasMedia)
             .keyboardShortcut(.home, modifiers: [])
 
             Button("Last") {
-                dataStore.lastMedia()
+                dataStore.goToLast()
             }
             .disabled(!dataStore.hasMedia)
             .keyboardShortcut(.end, modifiers: [])

@@ -26,7 +26,7 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
     private var currentIndex: Int = 0
 
     /// Change the current media index by a given amount.
-    private func changeMedia(by indexChangeAmount: Int) {
+    private func changeMediaIndex(by indexChangeAmount: Int) {
         if mediaUrls.count == 0 {
             return // nothing to do here
         }
@@ -45,7 +45,7 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
     }
 
     /// Change the current media index to a specified value.
-    private func changeMedia(to targetIndex: Int) {
+    private func changeMediaIndex(to targetIndex: Int) {
         currentIndex = targetIndex
         if currentMediaUrl != mediaUrls[currentIndex] {
             currentMediaUrl = mediaUrls[currentIndex] // only update if absolutely necessary
@@ -79,24 +79,24 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
     }
 
     /// Go to the first media.
-    func firstMedia() {
-        changeMedia(to: 0)
+    func goToFirst() {
+        changeMediaIndex(to: 0)
     }
 
     /// Go to the last media.
-    func lastMedia() {
+    func goToLast() {
         let targetIndex = mediaUrls.count != 0 ? (mediaUrls.count - 1) : 0
-        changeMedia(to: targetIndex)
+        changeMediaIndex(to: targetIndex)
     }
 
     /// Go to the next media.
-    func nextMedia() {
-        changeMedia(by: +1)
+    func goToNext() {
+        changeMediaIndex(by: +1)
     }
 
     /// Go to the previous media.
-    func previousMedia() {
-        changeMedia(by: -1)
+    func goToPrevious() {
+        changeMediaIndex(by: -1)
     }
 
     /// Set a list of media based on the files and directories provided.
