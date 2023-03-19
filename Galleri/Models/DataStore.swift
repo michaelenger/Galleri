@@ -126,13 +126,27 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
 
         // TODO maintain index position?
 
-        switch (sortBy) {
-        case .name:
-            mediaUrls.sort(by: { a, b in
-                return a.path(percentEncoded: false) < b.path(percentEncoded: false)
-            })
-        default:
-            print("Unhandled sort order: \(sortBy)")
+        if sortBy == .random {
+            mediaUrls.shuffle()
+            return
         }
+
+        mediaUrls.sort(by: { a, b in
+            switch (sortBy) {
+            case .date:
+                return a.creationDate! < b.creationDate!
+            case .kind:
+                return a.contentType! < b.contentType!
+            case .name:
+                return a.lastPathComponent < b.lastPathComponent
+            case .path:
+                return a.path(percentEncoded: false) < b.path(percentEncoded: false)
+            case .size:
+                return a.size < b.size
+            default:
+                print("Unhandled sort order: \(sortBy)")
+                return a.path(percentEncoded: false) < b.path(percentEncoded: false)
+            }
+        })
     }
 }

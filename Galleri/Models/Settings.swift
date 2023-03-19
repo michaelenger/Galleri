@@ -9,12 +9,12 @@ import Foundation
 
 /// Order which the media can be sorted by.
 enum SortOrder: String {
+    case date = "date"
+    case kind = "kind"
     case name = "name"
     case path = "path"
-    case date = "date"
-    case size = "size"
-    case kind = "kind"
     case random = "random"
+    case size = "size"
 }
 
 /// Holds the default settings for the app.
