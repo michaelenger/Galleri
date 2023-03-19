@@ -20,6 +20,7 @@ struct GalleriApp: App {
                 }
                 //.handlesExternalEvents(preferring: Set(arrayLiteral: "pause"), allowing: Set(arrayLiteral: "*"))  // not sure if this is needed
         }
+        .defaultSize(width: 400, height: 300) 
         .commands() {
             FileCommands(dataStore: dataStore)
             GoCommands(dataStore: dataStore)
