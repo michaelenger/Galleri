@@ -107,6 +107,11 @@ class DataStore: ObservableObject {
             }
         }
 
+        // TODO allow users to choose how to sort
+        imageUrls.sort(by: { a, b in
+            return a.path(percentEncoded: false) < b.path(percentEncoded: false)
+        })
+
         currentImageUrl = imageUrls.count != 0 ? imageUrls[currentIndex] : nil
     }
 }
