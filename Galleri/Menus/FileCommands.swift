@@ -19,12 +19,12 @@ struct FileCommands: Commands {
                 let openPanel = NSOpenPanel()
                 openPanel.allowedContentTypes = [.image]
                 openPanel.allowsMultipleSelection = true
-                openPanel.canChooseDirectories = false
+                openPanel.canChooseDirectories = true
                 openPanel.canChooseFiles = true
 
                 let response = openPanel.runModal()
                 if response == .OK {
-                    dataStore.setImages(urls: openPanel.urls)
+                    dataStore.setImages(from: openPanel.urls)
                 }
             }.keyboardShortcut("o")
 

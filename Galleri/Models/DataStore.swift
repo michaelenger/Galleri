@@ -42,10 +42,32 @@ class DataStore: ObservableObject {
         }
     }
 
+    /// Change the current image index to a specified value.
     private func changeImage(to targetIndex: Int) {
         currentIndex = targetIndex
         if currentImageUrl != imageUrls[currentIndex] {
             currentImageUrl = imageUrls[currentIndex] // only update if absolutely necessary
+        }
+    }
+
+    /// Fill the media list with items from a directory.
+    ///
+    /// This will recursively go through the directory and add any supported media items to the list.
+    private func fillMedia(from directory: URL) {
+        let items = try? FileManager.default.contentsOfDirectory(
+            at: directory,
+            includingPropertiesForKeys: [.typeIdentifierKey],
+            options: .skipsHiddenFiles
+        )
+
+        for item in items! {
+            if item.hasDirectoryPath {
+                fillMedia(from: item)
+            } else {
+                if item.isImage {
+                    imageUrls.append(item)
+                }
+            }
         }
     }
 
@@ -70,15 +92,21 @@ class DataStore: ObservableObject {
         changeImage(by: -1)
     }
 
-    /// Set an image as the only available image.
-    func setImage(url: URL) {
-        setImages(urls: [url])
-    }
-
-    /// Set a list of images as the available images.
-    func setImages(urls: [URL]) {
-        imageUrls = urls
+    /// Set a list of images based on the files and directories provided.
+    ///
+    /// This will iterate through the provided URLs and add any supported media to the media list. If the URL is a directory it will recursively go through it and fill the media list with anything it can find.
+    func setImages(from urls: [URL]) {
+        imageUrls = []
         currentIndex = 0
-        currentImageUrl = imageUrls[currentIndex]
+
+        for url in urls {
+            if url.hasDirectoryPath {
+                fillMedia(from: url)
+            } else {
+                imageUrls.append(url)
+            }
+        }
+
+        currentImageUrl = imageUrls.count != 0 ? imageUrls[currentIndex] : nil
     }
 }
