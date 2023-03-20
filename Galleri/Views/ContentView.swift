@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             SidebarView(selection: $dataStore.selectedMediaID)
-            GalleryView(media: $dataStore[dataStore.selectedMediaID])
+            MediaView(media: $dataStore[dataStore.selectedMediaID])
         }
     }
 }
