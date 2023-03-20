@@ -162,6 +162,12 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
         }
     }
 
+    func zoomToActualSize() {
+        if let media = self[selectedMediaID] {
+            media.zoomMode = .ActualSize
+        }
+    }
+
     /// Zoom the current media in to fit.
     func zoomToFit() {
         if let media = self[selectedMediaID] {

@@ -21,6 +21,31 @@ struct ViewCommands: Commands {
     var body: some Commands {
         CommandGroup(after: .sidebar) {
             Section {
+                Button("Actual Size") {
+                    dataStore.zoomToActualSize()
+                }
+                .disabled(!dataStore.hasMedia)
+                .keyboardShortcut("0")
+
+                Button("Zoom to Fit") {
+                    dataStore.zoomToFit()
+                }
+                .disabled(!dataStore.hasMedia)
+                .keyboardShortcut("9")
+
+                Button("Zoom In") {
+                    dataStore.zoomIn()
+                }
+                .disabled(!dataStore.hasMedia)
+                .keyboardShortcut("+")
+
+                Button("Zoom Out") {
+                    dataStore.zoomOut()
+                }
+                .disabled(!dataStore.hasMedia)
+                .keyboardShortcut("-")
+            }
+            Section {
                 Picker("Sort By", selection: $sortBy.onChange(sortByChanged)) {
                     Text("Name").tag(SortOrder.name)
                     Text("Path").tag(SortOrder.path)
