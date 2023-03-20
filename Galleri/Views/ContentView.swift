@@ -9,12 +9,48 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var dataStore: DataStore
+    @State private var columnVisibility = NavigationSplitViewVisibility.automatic
+    @State private var isFullscreen = false
+
+    var willEnterFullScreen = NotificationCenter.default.publisher(for: NSWindow.willEnterFullScreenNotification)
+    var willExitFullScreen = NotificationCenter.default.publisher(for: NSWindow.willExitFullScreenNotification)
 
     var body: some View {
-        NavigationView {
+        NavigationSplitView(columnVisibility: $columnVisibility) {
             SidebarView(selection: $dataStore.selectedMediaID)
+        } detail: {
             MediaView(media: $dataStore[dataStore.selectedMediaID])
+                .toolbar {
+                Button(action: {
+                    dataStore.zoomIn()
+                }) {
+                    Label("Zoom In", systemImage: "plus.magnifyingglass")
+                }
+                .disabled(dataStore.selectedMediaID == nil)
+                Button(action: {
+                    dataStore.zoomOut()
+                }) {
+                    Label("Zoom Out", systemImage: "minus.magnifyingglass")
+                }
+                .disabled(dataStore.selectedMediaID == nil)
+                Button(action: {
+                    dataStore.zoomToFit()
+                }) {
+                    Label("Zoom to Fit", systemImage: "arrow.up.left.and.down.right.and.arrow.up.right.and.down.left")
+                }
+                .disabled(dataStore.selectedMediaID == nil)
+            }
+            .navigationTitle("")
         }
+        .toolbar(isFullscreen ? .hidden : .visible)
+        .onReceive(willEnterFullScreen, perform: { _ in
+            isFullscreen = true
+            columnVisibility = .detailOnly
+        })
+        .onReceive(willExitFullScreen, perform: { _ in
+            isFullscreen = false
+            columnVisibility = .automatic
+        })
     }
 }
 

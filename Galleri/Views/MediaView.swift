@@ -23,42 +23,14 @@ struct MediaView: View {
                     }
                 }
             } else {
-                Spacer()
-                VStack {
-                    Image(systemName: "photo.stack")
-                        .imageScale(.large)
-                        .foregroundColor(.gray)
-                        .padding(2.0)
-                    Text("No Media")
-                        .font(.footnote)
-                        .foregroundColor(.gray)
-                }
+                Image(systemName: "photo.stack")
+                    .imageScale(.large)
+                    .foregroundColor(.gray)
                 .padding()
-                Spacer()
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment:.center)
         .background(.black)
-        .toolbar {
-            Button(action: {
-                dataStore.zoomIn()
-            }) {
-                Label("Zoom In", systemImage: "plus.magnifyingglass")
-            }
-            .disabled(media == nil)
-            Button(action: {
-                dataStore.zoomOut()
-            }) {
-                Label("Zoom Out", systemImage: "minus.magnifyingglass")
-            }
-            .disabled(media == nil)
-            Button(action: {
-                dataStore.zoomToFit()
-            }) {
-                Label("Zoom to Fit", systemImage: "arrow.up.left.and.down.right.and.arrow.up.right.and.down.left")
-            }
-            .disabled(media == nil)
-        }
         .addCustomHotkeys([
             HotkeyCombination(keyBase: [], key: .kVK_LeftArrow ) {
                 dataStore.goToPrevious()

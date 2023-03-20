@@ -23,6 +23,7 @@ struct SidebarView: View {
             }
             .padding()
         }
+        .listStyle(SidebarListStyle())
     }
 }
 
