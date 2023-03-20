@@ -9,11 +9,12 @@ import SwiftUI
 
 struct GalleryView: View {
     @EnvironmentObject var dataStore: DataStore
+    @Binding var media: Media?
 
     var body: some View {
         VStack {
-            if dataStore.currentMedia != nil {
-                MediaView(media: dataStore.currentMedia!)
+            if media != nil {
+                MediaView(media: media!)
             } else {
                 VStack {
                     Image(systemName: "photo.stack")
@@ -42,16 +43,10 @@ struct GalleryView: View {
 
 struct GalleryView_Previews: PreviewProvider {
     static var previews: some View {
-        GalleryView()
-            .environmentObject({ () -> DataStore in
-                let envObj = DataStore()
-                envObj.loadMedia(from: [
-                    URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg")
-                ])
-                return envObj
-            }() )
+        GalleryView(media: .constant(Media(URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg"))))
+            .environmentObject(DataStore())
             .frame(width: 300.0, height: 300.0)
-        GalleryView()
+        GalleryView(media: .constant(nil))
             .environmentObject(DataStore())
             .frame(width: 300.0, height: 300.0)
     }

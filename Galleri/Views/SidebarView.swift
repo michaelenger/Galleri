@@ -9,34 +9,33 @@ import SwiftUI
 
 struct SidebarView: View {
     @EnvironmentObject var dataStore: DataStore
+    @Binding var selection: Media.ID?
 
     var body: some View {
-        List(dataStore.mediaItems) { media in
+        List(dataStore.mediaItems, selection: $selection) { media in
             HStack {
                 Spacer()
                 Image(nsImage: media.image!)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(height: 90)
+                    .frame(height: 100)
                 Spacer()
             }
             .padding()
-//            .background(.gray)
-//            .cornerRadius(20)
         }
     }
 }
 
 struct SidebarView_Previews: PreviewProvider {
     static var previews: some View {
-        SidebarView()
+        SidebarView(selection: .constant("one"))
             .environmentObject({ () -> DataStore in
-                let envObj = DataStore()
-                envObj.loadMedia(from: [
-                    URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg"),
-                    URL(fileURLWithPath: "/Users/michaelenger/Downloads/dikbut.png"),
-                ])
-                return envObj
+                let dataStore = DataStore()
+                dataStore.mediaItems = [
+                    Media(id: "one", url: URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg")),
+                    Media(id: "two", url: URL(fileURLWithPath: "/Users/michaelenger/Downloads/dikbut.png"))
+                ]
+                return dataStore
             }() )
             .frame(width: 300, height: 300)
     }

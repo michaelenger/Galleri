@@ -11,8 +11,8 @@ import SwiftUI
 class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
     @AppStorage("sortBy") var sortBy = DefaultSettings.sortBy
 
-    /// URL of the current media.
-    @Published var currentMedia: Media? = nil
+    /// ID of the currently selected media item.
+    @Published var selectedMediaID: Media.ID?
 
     /// List of media.
     @Published var mediaItems: [Media] = []
@@ -22,14 +22,13 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
         get { return mediaItems.count != 0 }
     }
 
-    /// Index of the current media.
-    private var currentIndex: Int = 0
-
     /// Change the current media index by a given amount.
     private func changeMediaIndex(by indexChangeAmount: Int) {
         if mediaItems.count == 0 {
             return // nothing to do here
         }
+
+        var currentIndex = mediaItems.firstIndex(where: { $0.id == selectedMediaID }) ?? 0
 
         currentIndex += indexChangeAmount
 
@@ -44,9 +43,8 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
 
     /// Change the current media index to a specified value.
     private func changeMediaIndex(to targetIndex: Int) {
-        currentIndex = targetIndex
-        if currentMedia?.id != mediaItems[currentIndex].id {
-            currentMedia = mediaItems[currentIndex] // only update if absolutely necessary
+        if selectedMediaID != mediaItems[targetIndex].id {
+            selectedMediaID = mediaItems[targetIndex].id // only update if absolutely necessary
         }
     }
 
@@ -105,7 +103,6 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
     /// This will iterate through the provided URLs and add any supported media to the media list. If the URL is a directory it will recursively go through it and fill the media list with anything it can find.
     func loadMedia(from urls: [URL]) {
         var mediaUrls: [URL] = []
-        currentIndex = 0
 
         for url in urls {
             if url.hasDirectoryPath {
@@ -120,7 +117,7 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
         })
 
         sortMediaItems()
-        currentMedia = mediaItems.count != 0 ? mediaItems[currentIndex] : nil
+        selectedMediaID = mediaItems.count != 0 ? mediaItems.first!.id : nil
     }
 
     /// Sort the media list based on the sort order.
@@ -153,5 +150,20 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
                 return a.url.path(percentEncoded: false) < b.url.path(percentEncoded: false)
             }
         })
+    }
+
+    subscript(mediaID: Media.ID?) -> Media? {
+        get {
+            if let id = mediaID {
+                return mediaItems.first(where: { $0.id == id }) ?? nil
+            }
+            return nil
+        }
+
+        set(newValue) {
+            if let id = mediaID {
+                mediaItems[mediaItems.firstIndex(where: { $0.id == id })!] = newValue!
+            }
+        }
     }
 }

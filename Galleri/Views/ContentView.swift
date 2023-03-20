@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var dataStore: DataStore
+
     var body: some View {
         NavigationView {
-            SidebarView()
-            GalleryView()
+            SidebarView(selection: $dataStore.selectedMediaID)
+            GalleryView(media: $dataStore[dataStore.selectedMediaID])
         }
     }
 }

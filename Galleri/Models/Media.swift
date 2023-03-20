@@ -10,17 +10,24 @@ import SwiftUI
 /// A media item.
 struct Media: Identifiable {
     /// ID of the media item,
-    public private(set) var id: UUID
+    let id: String
 
     /// URL used to load the media item.
-    public private(set) var url: URL
+    let url: URL
 
     /// Image representation of the media item.
     public private(set) var image: NSImage?
 
     /// Create a new media item based on a given URL.
     init(_ url: URL) {
-        self.id = UUID()
+        self.id = UUID().uuidString
+        self.url = url
+        self.image = NSImage(contentsOf: url)
+    }
+
+    /// Create a new media item based on a given ID and URL.
+    init(id: Self.ID, url: URL) {
+        self.id = id
         self.url = url
         self.image = NSImage(contentsOf: url)
     }
