@@ -15,7 +15,7 @@ struct SidebarView: View {
         List(dataStore.mediaItems, selection: $selection) { media in
             HStack {
                 Spacer()
-                Image(nsImage: media.image!)
+                Image(nsImage: media.image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(height: 100)
@@ -32,8 +32,14 @@ struct SidebarView_Previews: PreviewProvider {
             .environmentObject({ () -> DataStore in
                 let dataStore = DataStore()
                 dataStore.mediaItems = [
-                    Media(id: "one", url: URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg")),
-                    Media(id: "two", url: URL(fileURLWithPath: "/Users/michaelenger/Downloads/dikbut.png"))
+                    Media(
+                        id: "one",
+                        url: URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg")
+                    ),
+                    Media(
+                        id: "two",
+                        url: URL(fileURLWithPath: "/Users/michaelenger/Downloads/dikbut.png")
+                    )
                 ]
                 return dataStore
             }() )

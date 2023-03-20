@@ -126,8 +126,6 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
             return // nothing to do here
         }
 
-        // TODO maintain index position?
-
         if sortBy == .random {
             mediaItems.shuffle()
             return
@@ -150,6 +148,37 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
                 return a.url.path(percentEncoded: false) < b.url.path(percentEncoded: false)
             }
         })
+    }
+
+    /// Zoom in on the current media item.
+    func zoomIn() {
+        if let media = self[selectedMediaID] {
+            switch media.zoomMode {
+            case let .Scaled(scale):
+                media.zoomMode = .Scaled(scale + ZOOM_INTERVAL)
+            default:
+                media.zoomMode = .Scaled(1 + ZOOM_INTERVAL)
+            }
+        }
+    }
+
+    /// Zoom the current media in to fit.
+    func zoomToFit() {
+        if let media = self[selectedMediaID] {
+            media.zoomMode = .Fit
+        }
+    }
+
+    /// Zoom out of the current media item.
+    func zoomOut() {
+        if let media = self[selectedMediaID] {
+            switch media.zoomMode {
+            case let .Scaled(scale):
+                media.zoomMode = .Scaled(scale - ZOOM_INTERVAL)
+            default:
+                media.zoomMode = .Scaled(1 - ZOOM_INTERVAL)
+            }
+        }
     }
 
     subscript(mediaID: Media.ID?) -> Media? {

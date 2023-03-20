@@ -14,8 +14,16 @@ struct MediaView: View {
     var body: some View {
         VStack {
             if media != nil {
-                ImageView(media: media!)
+                GeometryReader { geometry in
+                    ScrollView([.horizontal, .vertical]) {
+                        ImageView(
+                            media: media!,
+                            parentFrameSize: geometry.size
+                        )
+                    }
+                }
             } else {
+                Spacer()
                 VStack {
                     Image(systemName: "photo.stack")
                         .imageScale(.large)
@@ -26,10 +34,31 @@ struct MediaView: View {
                         .foregroundColor(.gray)
                 }
                 .padding()
+                Spacer()
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment:.center)
         .background(.black)
+        .toolbar {
+            Button(action: {
+                dataStore.zoomIn()
+            }) {
+                Label("Zoom In", systemImage: "plus.magnifyingglass")
+            }
+            .disabled(media == nil)
+            Button(action: {
+                dataStore.zoomOut()
+            }) {
+                Label("Zoom Out", systemImage: "minus.magnifyingglass")
+            }
+            .disabled(media == nil)
+            Button(action: {
+                dataStore.zoomToFit()
+            }) {
+                Label("Zoom to Fit", systemImage: "arrow.up.left.and.down.right.and.arrow.up.right.and.down.left")
+            }
+            .disabled(media == nil)
+        }
         .addCustomHotkeys([
             HotkeyCombination(keyBase: [], key: .kVK_LeftArrow ) {
                 dataStore.goToPrevious()

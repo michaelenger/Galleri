@@ -17,7 +17,16 @@ enum SortOrder: String {
     case size = "size"
 }
 
+/// The zoom mode for a media file.
+enum ZoomMode {
+    case ActualSize
+    case Fit
+    case Scaled(CGFloat)
+}
+
 /// Holds the default settings for the app.
 enum DefaultSettings {
     static let sortBy = SortOrder.name
 }
+
+let ZOOM_INTERVAL: CGFloat = 0.1

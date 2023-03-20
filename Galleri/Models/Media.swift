@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// A media item.
-struct Media: Identifiable {
+class Media: Identifiable, ObservableObject {
     /// ID of the media item,
     let id: String
 
@@ -16,20 +16,24 @@ struct Media: Identifiable {
     let url: URL
 
     /// Image representation of the media item.
-    public private(set) var image: NSImage?
+    public private(set) var image: NSImage
+
+    /// Zoom mode of the media.
+    @Published var zoomMode: ZoomMode = .Fit
 
     /// Create a new media item based on a given URL.
     init(_ url: URL) {
         self.id = UUID().uuidString
         self.url = url
-        self.image = NSImage(contentsOf: url)
+        self.image = NSImage(contentsOf: url)!
     }
 
     /// Create a new media item based on a given ID and URL.
-    init(id: Self.ID, url: URL) {
+    init(id: Media.ID, url: URL, zoomMode: ZoomMode = .Fit) {
         self.id = id
         self.url = url
-        self.image = NSImage(contentsOf: url)
+        self.zoomMode = zoomMode
+        self.image = NSImage(contentsOf: url)!
     }
 
     /// Creation date of the media file.
