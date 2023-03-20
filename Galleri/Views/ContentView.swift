@@ -19,8 +19,11 @@ struct ContentView: View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
             SidebarView(selection: $dataStore.selectedMediaID)
         } detail: {
-            MediaView(media: $dataStore[dataStore.selectedMediaID])
-                .toolbar {
+            MediaView(
+                media: $dataStore[dataStore.selectedMediaID],
+                isFullscreen: $isFullscreen
+            )
+            .toolbar {
                 Button(action: {
                     dataStore.zoomIn()
                 }) {

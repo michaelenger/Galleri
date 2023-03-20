@@ -10,6 +10,7 @@ import SwiftUI
 struct MediaView: View {
     @EnvironmentObject var dataStore: DataStore
     @Binding var media: Media?
+    @Binding var isFullscreen: Bool
 
     var body: some View {
         VStack {
@@ -30,7 +31,7 @@ struct MediaView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment:.center)
-        .background(.black)
+        .background(isFullscreen ? .black : .clear)
         .addCustomHotkeys([
             HotkeyCombination(keyBase: [], key: .kVK_LeftArrow ) {
                 dataStore.goToPrevious()
@@ -44,10 +45,16 @@ struct MediaView: View {
 
 struct MediaView_Previews: PreviewProvider {
     static var previews: some View {
-        MediaView(media: .constant(Media(URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg"))))
+        MediaView(
+            media: .constant(Media(URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg"))),
+            isFullscreen: .constant(false)
+        )
             .environmentObject(DataStore())
             .frame(width: 300.0, height: 300.0)
-        MediaView(media: .constant(nil))
+        MediaView(
+            media: .constant(nil),
+            isFullscreen: .constant(false)
+        )
             .environmentObject(DataStore())
             .frame(width: 300.0, height: 300.0)
     }
