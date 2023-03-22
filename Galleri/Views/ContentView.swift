@@ -46,6 +46,17 @@ struct ContentView: View {
             .navigationTitle("")
         }
         .toolbar(isFullscreen ? .hidden : .visible)
+        .addCustomHotkeys([
+            HotkeyCombination(keyBase: [], key: .kVK_LeftArrow ) {
+                dataStore.goToPrevious()
+            },
+            HotkeyCombination(keyBase: [], key: .kVK_RightArrow) {
+                dataStore.goToNext()
+            },
+            HotkeyCombination(keyBase: [], key: .kVK_Space) {
+                dataStore.goToNext()
+            }
+        ])
         .onReceive(willEnterFullScreen, perform: { _ in
             isFullscreen = true
             columnVisibility = .detailOnly
