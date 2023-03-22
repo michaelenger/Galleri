@@ -31,6 +31,9 @@ struct MediaView: View {
             },
             HotkeyCombination(keyBase: [], key: .kVK_RightArrow) {
                 dataStore.goToNext()
+            },
+            HotkeyCombination(keyBase: [], key: .kVK_Space) {
+                dataStore.goToNext()
             }
         ])
     }
