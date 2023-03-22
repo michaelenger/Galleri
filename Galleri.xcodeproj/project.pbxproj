@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		39081C1529CB96BA008A270F /* GalleryImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39081C1429CB96BA008A270F /* GalleryImageView.swift */; };
 		3950E81929C73CE600407635 /* ViewCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3950E81829C73CE600407635 /* ViewCommands.swift */; };
 		3950E81B29C7407E00407635 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3950E81A29C7407E00407635 /* Settings.swift */; };
 		3950E81D29C75BBE00407635 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3950E81C29C75BBE00407635 /* ContentView.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		39081C1429CB96BA008A270F /* GalleryImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImageView.swift; sourceTree = "<group>"; };
 		3950E81829C73CE600407635 /* ViewCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCommands.swift; sourceTree = "<group>"; };
 		3950E81A29C7407E00407635 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		3950E81C29C75BBE00407635 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 			children = (
 				3950E81C29C75BBE00407635 /* ContentView.swift */,
 				39CA964129C63C780094D2C4 /* DetailView.swift */,
+				39081C1429CB96BA008A270F /* GalleryImageView.swift */,
 				39CA963429C6292C0094D2C4 /* ScrollableImageView.swift */,
 				3950E81E29C75BE600407635 /* SidebarView.swift */,
 			);
@@ -219,6 +222,7 @@
 				3950E81929C73CE600407635 /* ViewCommands.swift in Sources */,
 				3950E81F29C75BE600407635 /* SidebarView.swift in Sources */,
 				39CA964229C63C780094D2C4 /* DetailView.swift in Sources */,
+				39081C1529CB96BA008A270F /* GalleryImageView.swift in Sources */,
 				39C8F93D29C6868300EAD3FC /* Extensions.swift in Sources */,
 				39CA963329C6292C0094D2C4 /* GalleriApp.swift in Sources */,
 				39C8F92E29C653E900EAD3FC /* FileCommands.swift in Sources */,

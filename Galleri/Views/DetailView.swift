@@ -14,7 +14,11 @@ struct DetailView: View {
     var body: some View {
         VStack {
             if media != nil {
-                GalleryImageView(media: media!)
+                if isFullscreen {
+                    GalleryImageView(media: media!)
+                } else {
+                    ScrollableImageView(media: media!)
+                }
             } else {
                 Image(systemName: "photo.stack")
                     .imageScale(.large)
