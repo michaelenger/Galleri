@@ -19,7 +19,7 @@ struct ContentView: View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
             SidebarView(selection: $dataStore.selectedMediaID)
         } detail: {
-            MediaView(
+            DetailView(
                 media: $dataStore[dataStore.selectedMediaID],
                 isFullscreen: $isFullscreen
             )

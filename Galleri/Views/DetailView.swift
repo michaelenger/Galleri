@@ -1,5 +1,5 @@
 //
-//  MediaView.swift
+//  DetailView.swift
 //  Galleri
 //
 //  Created by Michael Enger on 18/03/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MediaView: View {
+struct DetailView: View {
     @EnvironmentObject var dataStore: DataStore
     @Binding var media: Media?
     @Binding var isFullscreen: Bool
@@ -39,16 +39,16 @@ struct MediaView: View {
     }
 }
 
-struct MediaView_Previews: PreviewProvider {
+struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MediaView(
+        DetailView(
             media: .constant(Media(URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg"))),
             isFullscreen: .constant(false)
         )
         .environmentObject(DataStore())
         .frame(width: 300.0, height: 300.0)
 
-        MediaView(
+        DetailView(
             media: .constant(nil),
             isFullscreen: .constant(false)
         )
