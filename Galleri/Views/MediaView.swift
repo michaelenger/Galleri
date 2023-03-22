@@ -15,14 +15,7 @@ struct MediaView: View {
     var body: some View {
         VStack {
             if media != nil {
-                GeometryReader { geometry in
-                    ScrollView([.horizontal, .vertical]) {
-                        ImageView(
-                            media: media!,
-                            parentFrameSize: geometry.size
-                        )
-                    }
-                }
+                ScrollableImageView(media: media!)
             } else {
                 Image(systemName: "photo.stack")
                     .imageScale(.large)
@@ -49,13 +42,14 @@ struct MediaView_Previews: PreviewProvider {
             media: .constant(Media(URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg"))),
             isFullscreen: .constant(false)
         )
-            .environmentObject(DataStore())
-            .frame(width: 300.0, height: 300.0)
+        .environmentObject(DataStore())
+        .frame(width: 300.0, height: 300.0)
+
         MediaView(
             media: .constant(nil),
             isFullscreen: .constant(false)
         )
-            .environmentObject(DataStore())
-            .frame(width: 300.0, height: 300.0)
+        .environmentObject(DataStore())
+        .frame(width: 300.0, height: 300.0)
     }
 }
