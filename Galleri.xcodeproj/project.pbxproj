@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		39081C1529CB96BA008A270F /* GalleryImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39081C1429CB96BA008A270F /* GalleryImageView.swift */; };
+		39081C1929CBD311008A270F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39081C1829CBD311008A270F /* Utils.swift */; };
 		3950E81929C73CE600407635 /* ViewCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3950E81829C73CE600407635 /* ViewCommands.swift */; };
 		3950E81B29C7407E00407635 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3950E81A29C7407E00407635 /* Settings.swift */; };
 		3950E81D29C75BBE00407635 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3950E81C29C75BBE00407635 /* ContentView.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		39081C1429CB96BA008A270F /* GalleryImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImageView.swift; sourceTree = "<group>"; };
+		39081C1829CBD311008A270F /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		3950E81829C73CE600407635 /* ViewCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCommands.swift; sourceTree = "<group>"; };
 		3950E81A29C7407E00407635 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		3950E81C29C75BBE00407635 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			children = (
 				39C8F93429C6725D00EAD3FC /* HotKeys.swift */,
 				39C8F93C29C6868200EAD3FC /* Extensions.swift */,
+				39081C1829CBD311008A270F /* Utils.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				39C8F93029C6571F00EAD3FC /* DataStore.swift in Sources */,
 				39CA963529C6292C0094D2C4 /* ScrollableImageView.swift in Sources */,
 				3950E81929C73CE600407635 /* ViewCommands.swift in Sources */,
+				39081C1929CBD311008A270F /* Utils.swift in Sources */,
 				3950E81F29C75BE600407635 /* SidebarView.swift in Sources */,
 				39CA964229C63C780094D2C4 /* DetailView.swift in Sources */,
 				39081C1529CB96BA008A270F /* GalleryImageView.swift in Sources */,

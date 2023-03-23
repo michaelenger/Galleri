@@ -63,18 +63,22 @@ struct GalleryImageView: View {
                 isMouseOver = over
             }
             .onAppear(perform: {
-                let mouseDownMonitor = NSEvent.addLocalMonitorForEvents(matching: [.leftMouseDown]) { event in
+                monitors.append(NSEvent.addLocalMonitorForEvents(matching: [.leftMouseDown]) { event in
                     toggleZoom()
 
                     return event
-                }
-                monitors.append(mouseDownMonitor!)
+                })
 
-                let mouseMovedMonitor = NSEvent.addLocalMonitorForEvents(matching: [.mouseMoved]) { event in
-                    updateMousePosition(event: event, geometry: geometry)
+                monitors.append(NSEvent.addLocalMonitorForEvents(matching: [.scrollWheel]) { event in
+                    changeScale(step: event.deltaY)
+
                     return event
-                }
-                monitors.append(mouseMovedMonitor!)
+                })
+
+                monitors.append(NSEvent.addLocalMonitorForEvents(matching: [.mouseMoved]) { event in
+                    updateMousePosition(locationInWindow: event.locationInWindow, geometry: geometry)
+                    return event
+                })
             })
             .onDisappear(perform: {
                 NSCursor.unhide()  // just in case
@@ -85,6 +89,11 @@ struct GalleryImageView: View {
 }
 
 extension GalleryImageView {
+    /// Change the scale based on a step variable.
+    func changeScale(step: CGFloat) {
+        scale = clamp(scale + SCALE_INTERVAL * step, min: SCALE_MIN, max: SCALE_MAX)
+    }
+
     /// Get the image scale and offsets based on the given geometry.
     func imageScaleOffset(geometry: GeometryProxy) -> (CGFloat, CGFloat, CGFloat) {
         let wRatio = geometry.size.width / media.image.size.width * scale
@@ -109,32 +118,26 @@ extension GalleryImageView {
     }
 
     /// Update the mouse position based on a mouse event and geometry.
-    func updateMousePosition(event: NSEvent, geometry: GeometryProxy) {
+    func updateMousePosition(locationInWindow: NSPoint, geometry: GeometryProxy) {
         if !isMouseOver {
             return  // nothing to do here
         }
 
         let frame = geometry.frame(in: .global)
-        var x = event.locationInWindow.x - frame.origin.x
-        var y = frame.size.height - event.locationInWindow.y  // this only works on the bottom of the window
+        var x = locationInWindow.x - frame.origin.x
+        var y = frame.size.height - locationInWindow.y  // this only works on the bottom of the window
 
         if x < 0 || x > frame.width || y < 0 || y > frame.height {
             return  // we're outside the frame, but the mouse hover event wasn't caught for some reason
         }
 
         // Convert to 0-1 range and "pad" it
-        x = ((x / frame.width * 4) - 1) / 2
-        if x < 0 {
-            x = 0
-        } else if x > 1 {
-            x = 1
-        }
-        y = ((y / frame.height * 4) - 1) / 2
-        if y < 0 {
-            y = 0
-        } else if y > 1 {
-            y = 1
-        }
+        x = clamp(
+            ((x / frame.width * 4) - 1) / 2,
+            min: 0, max: 1)
+        y = clamp(
+            ((y / frame.height * 4) - 1) / 2,
+            min: 0, max: 1)
 
         mousePosition = CGPoint(
             x: x,
