@@ -1,5 +1,5 @@
 //
-//  Settings.swift
+//  Constants.swift
 //  Galleri
 //
 //  Created by Michael Enger on 19/03/2023.
