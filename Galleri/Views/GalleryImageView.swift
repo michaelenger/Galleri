@@ -64,13 +64,7 @@ struct GalleryImageView: View {
             }
             .onAppear(perform: {
                 let mouseDownMonitor = NSEvent.addLocalMonitorForEvents(matching: [.leftMouseDown]) { event in
-                    isZooming = !isZooming
-
-                    if isZooming {
-                        NSCursor.hide()
-                    } else {
-                        NSCursor.unhide()
-                    }
+                    toggleZoom()
 
                     return event
                 }
@@ -103,6 +97,17 @@ extension GalleryImageView {
         return (imageScale, xOffset, yOffset)
     }
 
+    /// Toggle the zoom.
+    func toggleZoom() {
+        isZooming = !isZooming
+
+        if isZooming {
+            NSCursor.hide()
+        } else {
+            NSCursor.unhide()
+        }
+    }
+
     /// Update the mouse position based on a mouse event and geometry.
     func updateMousePosition(event: NSEvent, geometry: GeometryProxy) {
         if !isMouseOver {
@@ -110,17 +115,31 @@ extension GalleryImageView {
         }
 
         let frame = geometry.frame(in: .global)
-        let newPositon = CGPoint(
-            x: (event.locationInWindow.x - frame.origin.x) / frame.size.width,
-            y: (frame.size.height - event.locationInWindow.y) / frame.size.height  // this only works on the bottom of the window
-        )
+        var x = event.locationInWindow.x - frame.origin.x
+        var y = frame.size.height - event.locationInWindow.y  // this only works on the bottom of the window
 
-        if newPositon.x < 0 || newPositon.x > frame.width
-            || newPositon.y < 0 || newPositon.y > frame.height {
+        if x < 0 || x > frame.width || y < 0 || y > frame.height {
             return  // we're outside the frame, but the mouse hover event wasn't caught for some reason
         }
 
-        mousePosition = newPositon
+        // Convert to 0-1 range and "pad" it
+        x = ((x / frame.width * 4) - 1) / 2
+        if x < 0 {
+            x = 0
+        } else if x > 1 {
+            x = 1
+        }
+        y = ((y / frame.height * 4) - 1) / 2
+        if y < 0 {
+            y = 0
+        } else if y > 1 {
+            y = 1
+        }
+
+        mousePosition = CGPoint(
+            x: x,
+            y: y
+        )
     }
 }
 
