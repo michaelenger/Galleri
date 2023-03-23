@@ -30,6 +30,7 @@ class GalleryImageViewMonitors {
 
 /// An image view that scales the image to the view and allows you to zoom/pan around using the mouse.
 struct GalleryImageView: View {
+    @EnvironmentObject var dataStore: DataStore
     @State var mousePosition = CGPoint(x: 0.5, y: 0.5)
     @State var isMouseOver = false
     @State var scale: CGFloat = 1.5
@@ -64,6 +65,18 @@ struct GalleryImageView: View {
             }
             .onAppear(perform: {
                 monitors.append(NSEvent.addLocalMonitorForEvents(matching: [.leftMouseDown]) { event in
+                    dataStore.goToNext()
+
+                    return event
+                })
+
+                monitors.append(NSEvent.addLocalMonitorForEvents(matching: [.rightMouseDown]) { event in
+                    dataStore.goToPrevious()
+
+                    return event
+                })
+
+                monitors.append(NSEvent.addLocalMonitorForEvents(matching: [.otherMouseDown]) { event in
                     toggleZoom()
 
                     return event
@@ -108,7 +121,7 @@ extension GalleryImageView {
 
     /// Toggle the zoom.
     func toggleZoom() {
-        isZooming = !isZooming
+        isZooming.toggle()
 
         if isZooming {
             NSCursor.hide()
