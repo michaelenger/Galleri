@@ -11,6 +11,9 @@ import SwiftUI
 class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
     @AppStorage("sortBy") var sortBy = DefaultSettings.sortBy
 
+    /// Whether to show the go to dialog.
+    @Published var showGoTo = false
+
     /// ID of the currently selected media item.
     @Published var selectedMediaID: Media.ID?
 
@@ -75,6 +78,15 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
     /// Handle drag-events to the dock icon.
     func application(_ application: NSApplication, open urls: [URL]) {
         loadMedia(from: urls)
+    }
+
+    /// Go to a specific media item.
+    func goTo(_ index: Int) {
+        let targetIndex = clamp(
+            index,
+            min: 1,
+            max: mediaItems.count)
+        changeMediaIndex(to: targetIndex - 1)
     }
 
     /// Go to the first media.

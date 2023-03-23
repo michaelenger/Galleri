@@ -13,29 +13,37 @@ struct GoCommands: Commands {
 
     var body: some Commands {
         CommandMenu("Go") {
-            Button("Next") {
-                dataStore.goToNext()
-            }
-            .disabled(!dataStore.hasMedia)
-            .keyboardShortcut(.downArrow, modifiers: [])
+            Section {
+                Button("Next") {
+                    dataStore.goToNext()
+                }
+                .disabled(!dataStore.hasMedia)
+                .keyboardShortcut(.downArrow, modifiers: [])
 
-            Button("Previous") {
-                dataStore.goToPrevious()
-            }
-            .disabled(!dataStore.hasMedia)
-            .keyboardShortcut(.upArrow, modifiers: [])
+                Button("Previous") {
+                    dataStore.goToPrevious()
+                }
+                .disabled(!dataStore.hasMedia)
+                .keyboardShortcut(.upArrow, modifiers: [])
 
-            Button("First") {
-                dataStore.goToFirst()
-            }
-            .disabled(!dataStore.hasMedia)
-            .keyboardShortcut(.home, modifiers: [])
+                Button("First") {
+                    dataStore.goToFirst()
+                }
+                .disabled(!dataStore.hasMedia)
+                .keyboardShortcut(.home, modifiers: [])
 
-            Button("Last") {
-                dataStore.goToLast()
+                Button("Last") {
+                    dataStore.goToLast()
+                }
+                .disabled(!dataStore.hasMedia)
+                .keyboardShortcut(.end, modifiers: [])
+            }
+
+            Button("Go to...") {
+                dataStore.showGoTo = true
             }
             .disabled(!dataStore.hasMedia)
-            .keyboardShortcut(.end, modifiers: [])
+            .keyboardShortcut("g", modifiers: [.option, .command])
         }
     }
 }
