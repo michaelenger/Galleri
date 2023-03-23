@@ -74,8 +74,8 @@ struct ContentView_Previews: PreviewProvider {
             .environmentObject({ () -> DataStore in
                 let envObj = DataStore()
                 envObj.loadMedia(from: [
-                    URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg"),
-                    URL(fileURLWithPath: "/Users/michaelenger/Downloads/dikbut.png"),
+                    Bundle.main.url(forResource: "example", withExtension: "jpeg")!,
+                    Bundle.main.url(forResource: "grid", withExtension: "png")!,
                 ])
                 return envObj
             }() )

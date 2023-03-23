@@ -149,7 +149,7 @@ extension GalleryImageView {
 struct GalleryImageView_Previews: PreviewProvider {
     static var previews: some View {
         GalleryImageView(
-            media: Media(URL(fileURLWithPath: "/Users/michaelenger/Desktop/grid.png"))
+            media: Media(Bundle.main.url(forResource: "grid", withExtension: "png")!)
         )
         .frame(width: 600.0, height: 700.0)
     }

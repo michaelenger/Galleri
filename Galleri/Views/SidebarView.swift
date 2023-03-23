@@ -35,11 +35,11 @@ struct SidebarView_Previews: PreviewProvider {
                 dataStore.mediaItems = [
                     Media(
                         id: "one",
-                        url: URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg")
+                        url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!
                     ),
                     Media(
                         id: "two",
-                        url: URL(fileURLWithPath: "/Users/michaelenger/Downloads/dikbut.png")
+                        url: Bundle.main.url(forResource: "grid", withExtension: "png")!
                     )
                 ]
                 return dataStore

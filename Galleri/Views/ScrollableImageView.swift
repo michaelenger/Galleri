@@ -45,7 +45,7 @@ struct ScrollableImageView_Previews: PreviewProvider {
         ScrollableImageView(
             media: Media(
                 id: "one",
-                url: URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg"),
+                url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!,
                 zoomMode: .ActualSize)
         )
         .frame(width: 400.0, height: 400.0)
@@ -53,7 +53,7 @@ struct ScrollableImageView_Previews: PreviewProvider {
         ScrollableImageView(
             media: Media(
                 id: "one",
-                url: URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg"),
+                url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!,
                 zoomMode: .Fit)
         )
         .frame(width: 400.0, height: 400.0)
@@ -61,7 +61,7 @@ struct ScrollableImageView_Previews: PreviewProvider {
         ScrollableImageView(
             media: Media(
                 id: "one",
-                url: URL(fileURLWithPath: "/Users/michaelenger/Downloads/DDfX1SX.jpeg"),
+                url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!,
                 zoomMode: .Scaled(0.5))
         )
         .frame(width: 400.0, height: 400.0)
