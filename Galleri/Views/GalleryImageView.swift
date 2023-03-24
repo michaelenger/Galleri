@@ -92,11 +92,19 @@ extension GalleryImageView {
 
     /// Go to the next media.
     func goToNext() {
+        if !isMouseOver {
+            return  // avoid changing media when clicking outside view
+        }
+
         dataStore.goToNext()
     }
 
     /// Go to the previous media.
     func goToPrevious() {
+        if !isMouseOver {
+            return  // avoid changing media when clicking outside view
+        }
+
         dataStore.goToPrevious()
     }
 
