@@ -104,6 +104,10 @@ struct GalleryImageView: View {
 extension GalleryImageView {
     /// Change the scale based on a step variable.
     func changeScale(step: CGFloat) {
+        if (!isZooming) {
+            return  // don't change scale unless we can see the effect
+        }
+
         scale = clamp(scale + SCALE_INTERVAL * step, min: SCALE_MIN, max: SCALE_MAX)
     }
 
