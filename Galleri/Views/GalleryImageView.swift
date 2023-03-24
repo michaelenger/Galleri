@@ -7,27 +7,6 @@
 
 import SwiftUI
 
-/// Contains the input monitors for the GalleryImageView.
-class GalleryImageViewMonitors {
-    private var monitors: [Any] = []
-
-    /// Append a monitor to the list.
-    func append(_ monitor: Any?) {
-        if monitor != nil {
-            monitors.append(monitor!)
-        }
-    }
-
-    /// Clear all the monitors, unregistering them in the process.
-    func clear() {
-        for monitor in monitors {
-            NSEvent.removeMonitor(monitor)
-        }
-
-        monitors.removeAll()
-    }
-}
-
 /// An image view that scales the image to the view and allows you to zoom/pan around using the mouse.
 struct GalleryImageView: View {
     @EnvironmentObject var dataStore: DataStore
@@ -35,9 +14,9 @@ struct GalleryImageView: View {
     @State var isMouseOver = false
     @State var scale: CGFloat = 1.5
     @State var isZooming = false
+    @State var eventMonitor: Any? = nil
 
     var media: Media
-    var monitors = GalleryImageViewMonitors()
 
     var body: some View {
         GeometryReader { geometry in
@@ -64,38 +43,38 @@ struct GalleryImageView: View {
                 isMouseOver = over
             }
             .onAppear(perform: {
-                monitors.append(NSEvent.addLocalMonitorForEvents(matching: [.leftMouseDown]) { event in
-                    dataStore.goToNext()
+                eventMonitor = NSEvent.addLocalMonitorForEvents(matching: [
+                    .leftMouseDown,
+                    .rightMouseDown,
+                    .otherMouseDown,
+                    .scrollWheel,
+                    .mouseMoved
+                ]) { event in
+                    switch event.type {
+                    case .leftMouseDown:
+                        goToNext()
+                    case .rightMouseDown:
+                        goToPrevious()
+                    case .otherMouseDown:
+                        toggleZoom()
+                    case .scrollWheel:
+                        changeScale(step: event.deltaY)
+                    case .mouseMoved:
+                        updateMousePosition(locationInWindow: event.locationInWindow, geometry: geometry)
+                    default:
+                        print("Unhandled event type: \(event.type)")
+                    }
 
                     return event
-                })
-
-                monitors.append(NSEvent.addLocalMonitorForEvents(matching: [.rightMouseDown]) { event in
-                    dataStore.goToPrevious()
-
-                    return event
-                })
-
-                monitors.append(NSEvent.addLocalMonitorForEvents(matching: [.otherMouseDown]) { event in
-                    toggleZoom()
-
-                    return event
-                })
-
-                monitors.append(NSEvent.addLocalMonitorForEvents(matching: [.scrollWheel]) { event in
-                    changeScale(step: event.deltaY)
-
-                    return event
-                })
-
-                monitors.append(NSEvent.addLocalMonitorForEvents(matching: [.mouseMoved]) { event in
-                    updateMousePosition(locationInWindow: event.locationInWindow, geometry: geometry)
-                    return event
-                })
+                }
             })
             .onDisappear(perform: {
                 NSCursor.unhide()  // just in case
-                monitors.clear()
+
+                if eventMonitor != nil {
+                    NSEvent.removeMonitor(eventMonitor!)
+                    eventMonitor = nil
+                }
             })
         }
     }
@@ -109,6 +88,16 @@ extension GalleryImageView {
         }
 
         scale = clamp(scale + SCALE_INTERVAL * step, min: SCALE_MIN, max: SCALE_MAX)
+    }
+
+    /// Go to the next media.
+    func goToNext() {
+        dataStore.goToNext()
+    }
+
+    /// Go to the previous media.
+    func goToPrevious() {
+        dataStore.goToPrevious()
     }
 
     /// Get the image scale and offsets based on the given geometry.
