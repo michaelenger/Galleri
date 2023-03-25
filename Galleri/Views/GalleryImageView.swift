@@ -55,6 +55,10 @@ struct GalleryImageView: View {
                     .scrollWheel,
                     .mouseMoved
                 ]) { event in
+                    if !isMouseOver {
+                        return event  // ignore all mouse events if not over the view
+                    }
+
                     switch event.type {
                     case .leftMouseDown:
                         goToNext()
@@ -102,19 +106,11 @@ extension GalleryImageView {
 
     /// Go to the next media.
     func goToNext() {
-        if !isMouseOver {
-            return  // avoid changing media when clicking outside view
-        }
-
         dataStore.goToNext()
     }
 
     /// Go to the previous media.
     func goToPrevious() {
-        if !isMouseOver {
-            return  // avoid changing media when clicking outside view
-        }
-
         dataStore.goToPrevious()
     }
 
@@ -163,10 +159,6 @@ extension GalleryImageView {
 
     /// Update the mouse position based on a mouse event and geometry.
     func updateMousePosition(locationInWindow: NSPoint, geometry: GeometryProxy) {
-        if !isMouseOver {
-            return  // nothing to do here
-        }
-
         let frame = geometry.frame(in: .global)
         var x = locationInWindow.x - frame.origin.x
         var y = frame.size.height - locationInWindow.y  // this only works on the bottom of the window
