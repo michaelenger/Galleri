@@ -88,8 +88,13 @@ struct GalleryImageView: View {
 extension GalleryImageView {
     /// Change the scale based on a step variable.
     func changeScale(step: CGFloat) {
-        if (!isZooming) {
-            return  // don't change scale unless we can see the effect
+        if !isZooming {
+            if step < 0 {
+                return  // zooming out when not in zoom mode is ignored
+            }
+
+            toggleZoom()
+            zoomScale = 1.0
         }
 
         zoomScale = clamp(zoomScale + SCALE_INTERVAL * step, min: SCALE_MIN, max: SCALE_MAX)
