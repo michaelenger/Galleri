@@ -12,7 +12,7 @@ struct GalleryImageView: View {
     @EnvironmentObject var dataStore: DataStore
     @State var mousePosition = CGPoint(x: 0.5, y: 0.5)
     @State var isMouseOver = false
-    @State var scale: CGFloat = 1.5
+    @State var zoomScale: CGFloat = 1.5
     @State var isZooming = false
     @State var eventMonitor: Any? = nil
 
@@ -22,13 +22,18 @@ struct GalleryImageView: View {
         GeometryReader { geometry in
             ZStack(alignment: .topLeading) {
                 if isZooming {
-                    let (imageScale, xOffset, yOffset) = imageScaleOffset(geometry: geometry)
+                    let scale = imageFitScale(frameSize: geometry.size) * zoomScale
+                    let offset = imageOffset(
+                        frameSize: geometry.size,
+                        imageSize: CGSize(
+                            width: media.image.size.width * scale,
+                            height: media.image.size.height * scale))
 
                     Image(nsImage: media.image)
                         .resizable()
-                        .frame(width: media.image.size.width * imageScale,
-                               height: media.image.size.height * imageScale)
-                        .offset(x: xOffset, y: yOffset)
+                        .frame(width: media.image.size.width * scale,
+                               height: media.image.size.height * scale)
+                        .offset(x: offset.x, y: offset.y)
                 } else {
                     Image(nsImage: media.image)
                         .resizable()
@@ -87,7 +92,7 @@ extension GalleryImageView {
             return  // don't change scale unless we can see the effect
         }
 
-        scale = clamp(scale + SCALE_INTERVAL * step, min: SCALE_MIN, max: SCALE_MAX)
+        zoomScale = clamp(zoomScale + SCALE_INTERVAL * step, min: SCALE_MIN, max: SCALE_MAX)
     }
 
     /// Go to the next media.
@@ -108,16 +113,36 @@ extension GalleryImageView {
         dataStore.goToPrevious()
     }
 
-    /// Get the image scale and offsets based on the given geometry.
-    func imageScaleOffset(geometry: GeometryProxy) -> (CGFloat, CGFloat, CGFloat) {
-        let wRatio = geometry.size.width / media.image.size.width * scale
-        let hRatio = geometry.size.height / media.image.size.height * scale
+    /// Scale for filling the frame with the image.
+    func imageFillScale(frameSize: CGSize) -> CGFloat {
+        let wRatio = frameSize.width / media.image.size.width
+        let hRatio = frameSize.height / media.image.size.height
 
-        let imageScale = max(wRatio, hRatio)
-        let xOffset = -((media.image.size.width * imageScale) - geometry.size.width) * mousePosition.x
-        let yOffset = -((media.image.size.height * imageScale) - geometry.size.height) * mousePosition.y
+        return max(wRatio, hRatio)
+    }
 
-        return (imageScale, xOffset, yOffset)
+    /// Scale for fitting the image in the frame.
+    func imageFitScale(frameSize: CGSize) -> CGFloat {
+        let wRatio = frameSize.width / media.image.size.width
+        let hRatio = frameSize.height / media.image.size.height
+
+        if media.image.size.height * wRatio <= frameSize.height {
+            return wRatio
+        } else {
+            return hRatio
+        }
+    }
+
+    /// Get the image offset based on the frame, scale, and mouse positions.
+    func imageOffset(frameSize: CGSize, imageSize: CGSize) -> CGPoint {
+        let xOffset = imageSize.width > frameSize.width
+            ? -(imageSize.width - frameSize.width) * mousePosition.x
+            : 0
+        let yOffset = imageSize.height > frameSize.height
+            ? -(imageSize.height - frameSize.height) * mousePosition.y
+            : 0
+
+        return CGPoint(x: xOffset, y: yOffset)
     }
 
     /// Toggle the zoom.
