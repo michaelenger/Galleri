@@ -101,7 +101,11 @@ extension GalleryImageView {
             zoomScale = 1.0
         }
 
-        zoomScale = clamp(zoomScale + SCALE_INTERVAL * step, min: SCALE_MIN, max: SCALE_MAX)
+        zoomScale = clamp(zoomScale + (SCALE_INTERVAL * step), min: SCALE_MIN, max: SCALE_MAX)
+
+        if zoomScale == 1 && isZooming {
+            toggleZoom()  // it's effectively off
+        }
     }
 
     /// Go to the next media.
