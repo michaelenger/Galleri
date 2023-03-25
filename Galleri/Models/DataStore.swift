@@ -116,14 +116,21 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
     func loadMedia(from urls: [URL]) {
         var mediaUrls: [URL] = []
 
+        let urlsListText = urls.map({ url in url.path(percentEncoded: false) }).joined(separator: ", ")
+        logger.log("Loading media from: [\(urlsListText)]")
+
         for url in urls {
             if url.hasDirectoryPath {
                 mediaUrls += getMedia(from: url)
             } else if url.isImage {
                 mediaUrls.append(url)
+            } else {
+                logger.warning("Skipping unsupported media: \(url.path(percentEncoded: false))")
             }
         }
 
+        let mediaUrlsText = mediaUrls.map({ url in url.path(percentEncoded: false) }).joined(separator: ", ")
+        logger.log("Loading media: [\(mediaUrlsText)]")
         mediaItems = mediaUrls.map({ url in
             Media(url)
         })
@@ -137,6 +144,8 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
         if mediaItems.count < 2 {
             return // nothing to do here
         }
+
+        logger.log("Sorting media by \(self.sortBy.rawValue)")
 
         if sortBy == .random {
             mediaItems.shuffle()
@@ -156,7 +165,7 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
             case .size:
                 return a.size < b.size
             default:
-                print("Unhandled sort order: \(sortBy)")
+                logger.error("Unhandled sort order: \(self.sortBy.rawValue)")
                 return a.url.path(percentEncoded: false) < b.url.path(percentEncoded: false)
             }
         })

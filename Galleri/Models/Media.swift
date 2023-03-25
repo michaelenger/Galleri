@@ -22,10 +22,10 @@ class Media: Identifiable, ObservableObject {
     @Published var zoomMode: ZoomMode = .Fit
 
     /// Create a new media item based on a given URL.
-    init(_ url: URL) {
-        self.id = UUID().uuidString
-        self.url = url
-        self.image = NSImage(contentsOf: url)!
+    convenience init(_ url: URL) {
+        self.init(
+            id: UUID().uuidString,
+            url: url)
     }
 
     /// Create a new media item based on a given ID and URL.

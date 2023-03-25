@@ -71,7 +71,7 @@ struct GalleryImageView: View {
                     case .mouseMoved:
                         updateMousePosition(locationInWindow: event.locationInWindow, geometry: geometry)
                     default:
-                        print("Unhandled event type: \(event.type)")
+                        logger.error("Unhandled event type: \(event.type.rawValue)")
                     }
 
                     return event
