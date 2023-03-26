@@ -20,7 +20,6 @@
 		3950E82129C75EB800407635 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3950E82029C75EB800407635 /* Media.swift */; };
 		39C8F92E29C653E900EAD3FC /* FileCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C8F92D29C653E900EAD3FC /* FileCommands.swift */; };
 		39C8F93029C6571F00EAD3FC /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C8F92F29C6571F00EAD3FC /* DataStore.swift */; };
-		39C8F93329C6600A00EAD3FC /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 39C8F93229C6600A00EAD3FC /* LICENSE */; };
 		39C8F93529C6725D00EAD3FC /* HotKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C8F93429C6725D00EAD3FC /* HotKeys.swift */; };
 		39C8F93B29C67AE900EAD3FC /* GoCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C8F93A29C67AE900EAD3FC /* GoCommands.swift */; };
 		39C8F93D29C6868300EAD3FC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C8F93C29C6868200EAD3FC /* Extensions.swift */; };
@@ -45,8 +44,6 @@
 		3950E82029C75EB800407635 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		39C8F92D29C653E900EAD3FC /* FileCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCommands.swift; sourceTree = "<group>"; };
 		39C8F92F29C6571F00EAD3FC /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
-		39C8F93129C65FB200EAD3FC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		39C8F93229C6600A00EAD3FC /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		39C8F93429C6725D00EAD3FC /* HotKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeys.swift; sourceTree = "<group>"; };
 		39C8F93A29C67AE900EAD3FC /* GoCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoCommands.swift; sourceTree = "<group>"; };
 		39C8F93C29C6868200EAD3FC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -142,8 +139,6 @@
 				39CA963629C6292D0094D2C4 /* Assets.xcassets */,
 				39CA963B29C6292D0094D2C4 /* Galleri.entitlements */,
 				39CA963829C6292D0094D2C4 /* Preview Content */,
-				39C8F93129C65FB200EAD3FC /* README.md */,
-				39C8F93229C6600A00EAD3FC /* LICENSE */,
 			);
 			path = Galleri;
 			sourceTree = "<group>";
@@ -217,7 +212,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39C8F93329C6600A00EAD3FC /* LICENSE in Resources */,
 				39081C2529CF4FB3008A270F /* squid.gif in Resources */,
 				39081C1F29CD0079008A270F /* grid.png in Resources */,
 				39CA963A29C6292D0094D2C4 /* Preview Assets.xcassets in Resources */,
