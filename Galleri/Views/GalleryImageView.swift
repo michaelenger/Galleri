@@ -29,15 +29,12 @@ struct GalleryImageView: View {
                             width: media.image.size.width * scale,
                             height: media.image.size.height * scale))
 
-                    Image(nsImage: media.image)
-                        .resizable()
+                    MediaView(media: media)
                         .frame(width: media.image.size.width * scale,
                                height: media.image.size.height * scale)
                         .offset(x: offset.x, y: offset.y)
                 } else {
-                    Image(nsImage: media.image)
-                        .resizable()
-                        .scaledToFit()
+                    MediaView(media: media)
                 }
 //                Text("\(mousePosition.x) x \(mousePosition.y)")
 //                    .foregroundColor(.black)

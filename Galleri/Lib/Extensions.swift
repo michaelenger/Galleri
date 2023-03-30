@@ -27,7 +27,12 @@ extension URL {
         let contentType = try? resourceValues(forKeys: [.contentTypeKey]).contentType
 
         return contentType?.identifier
-    }    
+    }
+
+    /// Whether the resource is an animated image.
+    var isAnimatedImage: Bool {
+        return contentType == "com.compuserve.gif"
+    }
 
     /// Whether the resource is an image.
     var isImage: Bool {

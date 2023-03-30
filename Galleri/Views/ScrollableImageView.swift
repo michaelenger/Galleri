@@ -16,9 +16,7 @@ struct ScrollableImageView: View {
             let frameSize = desiredFrameSize(geometry: geometry)
 
             ScrollView([.horizontal, .vertical]) {
-                Image(nsImage: self.media.image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
+                MediaView(media: self.media)
                     .frame(width: frameSize.width, height: frameSize.height)
             }
         }
