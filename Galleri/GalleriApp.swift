@@ -23,6 +23,7 @@ struct GalleriApp: App {
         .defaultSize(width: 400, height: 300)
         .commands() {
             FileCommands(dataStore: dataStore)
+            EditCommands(dataStore: dataStore)
             ViewCommands(dataStore: dataStore)
             GoCommands(dataStore: dataStore)
             SidebarCommands()

@@ -22,6 +22,29 @@ struct SidebarView: View {
                 Spacer()
             }
             .padding()
+            .contextMenu {
+                Section {
+                    Button("Move Up") {
+                        dataStore.moveMediaUp(media.id)
+                    }
+                    Button("Move Down") {
+                        dataStore.moveMediaDown(media.id)
+                    }
+                }
+                Section {
+                    Button("Move To Top") {
+                        dataStore.moveMediaToTop(media.id)
+                    }
+                    Button("Move To Bottom") {
+                        dataStore.moveMediaToBottom(media.id)
+                    }
+                }
+                Section {
+                    Button("Remove") {
+                        dataStore.removeMedia(media.id)
+                    }
+                }
+            }
         }
         .listStyle(SidebarListStyle())
     }

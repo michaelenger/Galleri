@@ -75,6 +75,18 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
         return mediaUrls
     }
 
+    /// Shift a media item from one index to another.
+    private func shiftMedia(from: Int, to: Int) {
+        if (from == to || from < 0 || to >= mediaItems.count) {
+            return  // nothing to do
+        }
+
+        logger.log("Shifting media (\(self.mediaItems[from].id)) from \(from) to \(to)")
+
+        let media = mediaItems.remove(at: from)
+        mediaItems.insert(media, at: to)
+    }
+
     /// Handle drag-events to the dock icon.
     func application(_ application: NSApplication, open urls: [URL]) {
         loadMedia(from: urls)
@@ -137,6 +149,51 @@ class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
 
         sortMediaItems()
         selectedMediaID = mediaItems.count != 0 ? mediaItems.first!.id : nil
+    }
+
+    /// Move the specified media down in the list.
+    func moveMediaDown(_ id: Media.ID) {
+        let mediaIndex = mediaItems.firstIndex(where: { $0.id == id }) ?? 0
+
+        shiftMedia(from: mediaIndex, to: mediaIndex + 1)
+    }
+
+    /// Move the specified media to the top of the list.
+    func moveMediaToBottom(_ id: Media.ID) {
+        let mediaIndex = mediaItems.firstIndex(where: { $0.id == id }) ?? 0
+
+        shiftMedia(from: mediaIndex, to: mediaItems.count - 1)
+    }
+
+    /// Move the specified media to the top of the list.
+    func moveMediaToTop(_ id: Media.ID) {
+        let mediaIndex = mediaItems.firstIndex(where: { $0.id == id }) ?? 0
+
+        shiftMedia(from: mediaIndex, to: 0)
+    }
+
+    /// Move the specified media up in the list.
+    func moveMediaUp(_ id: Media.ID) {
+        let mediaIndex = mediaItems.firstIndex(where: { $0.id == id }) ?? 0
+
+        shiftMedia(from: mediaIndex, to: mediaIndex - 1)
+    }
+
+    /// Remove media from the given ID.
+    func removeMedia(_ id: Media.ID) {
+        var mediaIndex = mediaItems.firstIndex(where: { $0.id == id }) ?? 0
+        logger.log("Removing media (\(id)) at \(mediaIndex)")
+
+        mediaItems.remove(at: mediaIndex)
+
+        if selectedMediaID == id {
+            if !mediaItems.isEmpty {
+                mediaIndex = mediaIndex == mediaItems.count ? mediaIndex - 1 : mediaIndex
+                selectedMediaID = mediaItems[mediaIndex].id
+            } else {
+                selectedMediaID = nil
+            }
+        }
     }
 
     /// Sort the media list based on the sort order.
