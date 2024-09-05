@@ -13,7 +13,6 @@
 		39081C1929CBD311008A270F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39081C1829CBD311008A270F /* Utils.swift */; };
 		39081C1F29CD0079008A270F /* grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 39081C1E29CD0078008A270F /* grid.png */; };
 		39081C2129CD008E008A270F /* example.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 39081C2029CD008E008A270F /* example.jpeg */; };
-		39081C2329CD0DBC008A270F /* GoToView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39081C2229CD0DBC008A270F /* GoToView.swift */; };
 		39081C2529CF4FB3008A270F /* squid.gif in Resources */ = {isa = PBXBuildFile; fileRef = 39081C2429CF4FB3008A270F /* squid.gif */; };
 		394E772129D9AB0300602926 /* EditCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 394E772029D9AB0300602926 /* EditCommands.swift */; };
 		3950E81929C73CE600407635 /* ViewCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3950E81829C73CE600407635 /* ViewCommands.swift */; };
@@ -40,7 +39,6 @@
 		39081C1829CBD311008A270F /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		39081C1E29CD0078008A270F /* grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grid.png; sourceTree = "<group>"; };
 		39081C2029CD008E008A270F /* example.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = example.jpeg; sourceTree = "<group>"; };
-		39081C2229CD0DBC008A270F /* GoToView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoToView.swift; sourceTree = "<group>"; };
 		39081C2429CF4FB3008A270F /* squid.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = squid.gif; sourceTree = "<group>"; };
 		394E772029D9AB0300602926 /* EditCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCommands.swift; sourceTree = "<group>"; };
 		3950E81829C73CE600407635 /* ViewCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCommands.swift; sourceTree = "<group>"; };
@@ -80,7 +78,6 @@
 				3950E81C29C75BBE00407635 /* ContentView.swift */,
 				39CA964129C63C780094D2C4 /* DetailView.swift */,
 				39081C1429CB96BA008A270F /* DynamicZoomView.swift */,
-				39081C2229CD0DBC008A270F /* GoToView.swift */,
 				3904716A29D3972E006F9B64 /* MediaView.swift */,
 				39CA963429C6292C0094D2C4 /* ScrollableImageView.swift */,
 				3950E81E29C75BE600407635 /* SidebarView.swift */,
@@ -252,7 +249,6 @@
 				39CA963329C6292C0094D2C4 /* GalleriApp.swift in Sources */,
 				39C8F92E29C653E900EAD3FC /* FileCommands.swift in Sources */,
 				3950E82129C75EB800407635 /* Media.swift in Sources */,
-				39081C2329CD0DBC008A270F /* GoToView.swift in Sources */,
 				39C8F93529C6725D00EAD3FC /* HotKeys.swift in Sources */,
 				39C8F93B29C67AE900EAD3FC /* GoCommands.swift in Sources */,
 			);

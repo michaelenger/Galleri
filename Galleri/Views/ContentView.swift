@@ -47,9 +47,6 @@ struct ContentView: View {
             }
             .navigationTitle("")
         }
-        .sheet(isPresented: $dataStore.showGoTo) {
-            GoToView()
-        }
         .toolbar(isFullscreen ? .hidden : .visible)
         .addCustomHotkeys([
             HotkeyCombination(keyBase: [], key: .kVK_LeftArrow ) {

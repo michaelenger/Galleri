@@ -38,12 +38,6 @@ struct GoCommands: Commands {
                 .disabled(!dataStore.hasMedia)
                 .keyboardShortcut(.end, modifiers: [])
             }
-
-            Button("Go to...") {
-                dataStore.showGoTo = true
-            }
-            .disabled(!dataStore.hasMedia)
-            .keyboardShortcut("g", modifiers: [.option, .command])
         }
     }
 }
