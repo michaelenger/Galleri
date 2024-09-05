@@ -1,5 +1,5 @@
 //
-//  ScrollableImageView.swift
+//  ScrollableView.swift
 //  Galleri
 //
 //  Created by Michael Enger on 18/03/2023.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-/// An image view that displays the image and allows you to scroll, if necessary.
-struct ScrollableImageView: View {
+/// An image view that displays the media and allows you to scroll, if necessary.
+struct ScrollableView: View {
     var media: Media
 
     var body: some View {
@@ -23,7 +23,7 @@ struct ScrollableImageView: View {
     }
 }
 
-extension ScrollableImageView {
+extension ScrollableView {
     /// Get the desired frame size based on the image's zoom mode.
     func desiredFrameSize(geometry: GeometryProxy) -> CGSize {
         switch media.zoomMode {
@@ -38,9 +38,9 @@ extension ScrollableImageView {
     }
 }
 
-struct ScrollableImageView_Previews: PreviewProvider {
+struct ScrollableView_Previews: PreviewProvider {
     static var previews: some View {
-        ScrollableImageView(
+        ScrollableView(
             media: Media(
                 id: "one",
                 url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!,
@@ -48,7 +48,7 @@ struct ScrollableImageView_Previews: PreviewProvider {
         )
         .frame(width: 400.0, height: 400.0)
 
-        ScrollableImageView(
+        ScrollableView(
             media: Media(
                 id: "one",
                 url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!,
@@ -56,7 +56,7 @@ struct ScrollableImageView_Previews: PreviewProvider {
         )
         .frame(width: 400.0, height: 400.0)
 
-        ScrollableImageView(
+        ScrollableView(
             media: Media(
                 id: "one",
                 url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!,

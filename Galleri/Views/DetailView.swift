@@ -18,7 +18,7 @@ struct DetailView: View {
                 if isFullscreen {
                     DynamicZoomView(media: media!)
                 } else {
-                    ScrollableImageView(media: media!)
+                    ScrollableView(media: media!)
                 }
             } else {
                 Image(systemName: "photo.stack")
