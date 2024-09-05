@@ -22,10 +22,10 @@ struct MediaView: View {
     }
 }
 
-struct MediaView_Previews: PreviewProvider {
-    static var previews: some View {
-        MediaView(media: Media(Bundle.main.url(forResource: "squid", withExtension: "gif")!))
+#Preview("Animated GIF") {
+    MediaView(media: Media(Bundle.main.url(forResource: "squid", withExtension: "gif")!))
+}
 
-        MediaView(media: Media(Bundle.main.url(forResource: "grid", withExtension: "png")!))
-    }
+#Preview("Static PNG") {
+    MediaView(media: Media(Bundle.main.url(forResource: "grid", withExtension: "png")!))
 }

@@ -51,23 +51,21 @@ struct SidebarView: View {
     }
 }
 
-struct SidebarView_Previews: PreviewProvider {
-    static var previews: some View {
-        SidebarView(selection: .constant("one"))
-            .environment({ () -> DataStore in
-                let dataStore = DataStore()
-                dataStore.mediaItems = [
-                    Media(
-                        id: "one",
-                        url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!
-                    ),
-                    Media(
-                        id: "two",
-                        url: Bundle.main.url(forResource: "grid", withExtension: "png")!
-                    )
-                ]
-                return dataStore
-            }() )
-            .frame(width: 300, height: 300)
-    }
+#Preview {
+    SidebarView(selection: .constant("one"))
+        .environment({ () -> DataStore in
+            let dataStore = DataStore()
+            dataStore.mediaItems = [
+                Media(
+                    id: "one",
+                    url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!
+                ),
+                Media(
+                    id: "two",
+                    url: Bundle.main.url(forResource: "grid", withExtension: "png")!
+                )
+            ]
+            return dataStore
+        }() )
+        .frame(width: 300, height: 300)
 }

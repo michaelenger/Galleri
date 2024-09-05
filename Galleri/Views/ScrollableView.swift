@@ -38,31 +38,32 @@ extension ScrollableView {
     }
 }
 
-struct ScrollableView_Previews: PreviewProvider {
-    static var previews: some View {
-        ScrollableView(
-            media: Media(
-                id: "one",
-                url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!,
-                zoomMode: .ActualSize)
-        )
-        .frame(width: 400.0, height: 400.0)
-
-        ScrollableView(
-            media: Media(
-                id: "one",
-                url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!,
-                zoomMode: .Fit)
-        )
-        .frame(width: 400.0, height: 400.0)
-
-        ScrollableView(
-            media: Media(
-                id: "one",
-                url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!,
-                zoomMode: .Scaled(0.5))
-        )
-        .frame(width: 400.0, height: 400.0)
-    }
+#Preview("Too Big") {
+    ScrollableView(
+        media: Media(
+            id: "one",
+            url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!,
+            zoomMode: .ActualSize)
+    )
+    .frame(width: 400.0, height: 400.0)
 }
 
+#Preview("Just Right") {
+    ScrollableView(
+        media: Media(
+            id: "one",
+            url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!,
+            zoomMode: .Fit)
+    )
+    .frame(width: 400.0, height: 400.0)
+}
+
+#Preview("Too Small") {
+    ScrollableView(
+        media: Media(
+            id: "one",
+            url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!,
+            zoomMode: .Scaled(0.5))
+    )
+    .frame(width: 400.0, height: 400.0)
+}

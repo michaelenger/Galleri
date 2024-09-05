@@ -183,18 +183,16 @@ extension DynamicZoomView {
     }
 }
 
-struct DynamicZoomView_Previews: PreviewProvider {
-    static var previews: some View {
-        DynamicZoomView(
-            media: Media(Bundle.main.url(forResource: "grid", withExtension: "png")!)
-        )
-        .frame(width: 600.0, height: 700.0)
-        .environment({ () -> DataStore in
-            let envObj = DataStore()
-            envObj.loadMedia(from: [
-                Bundle.main.url(forResource: "grid", withExtension: "png")!,
-            ])
-            return envObj
-        }() )
-    }
+#Preview {
+    DynamicZoomView(
+        media: Media(Bundle.main.url(forResource: "grid", withExtension: "png")!)
+    )
+    .frame(width: 600.0, height: 700.0)
+    .environment({ () -> DataStore in
+        let envObj = DataStore()
+        envObj.loadMedia(from: [
+            Bundle.main.url(forResource: "grid", withExtension: "png")!,
+        ])
+        return envObj
+    }() )
 }

@@ -71,16 +71,14 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-            .environment({ () -> DataStore in
-                let envObj = DataStore()
-                envObj.loadMedia(from: [
-                    Bundle.main.url(forResource: "example", withExtension: "jpeg")!,
-                    Bundle.main.url(forResource: "grid", withExtension: "png")!,
-                ])
-                return envObj
-            }() )
-    }
+#Preview {
+    ContentView()
+        .environment({ () -> DataStore in
+            let envObj = DataStore()
+            envObj.loadMedia(from: [
+                Bundle.main.url(forResource: "example", withExtension: "jpeg")!,
+                Bundle.main.url(forResource: "grid", withExtension: "png")!,
+            ])
+            return envObj
+        }() )
 }
