@@ -18,6 +18,9 @@ import SwiftUI
     /// List of media.
     var mediaItems: [Media] = []
 
+    /// Zoom mode of the media.
+    var zoomMode: ZoomMode = .Fit
+
     /// Whether there are any media.
     var hasMedia: Bool {
         get { return mediaItems.count != 0 }
@@ -219,38 +222,30 @@ import SwiftUI
 
     /// Zoom in on the current media item.
     func zoomIn() {
-        if let media = self[selectedMediaID] {
-            switch media.zoomMode {
-            case let .Scaled(scale):
-                media.zoomMode = .Scaled(scale + ZOOM_INTERVAL)
-            default:
-                media.zoomMode = .Scaled(1 + ZOOM_INTERVAL)
-            }
+        switch zoomMode {
+        case let .Scaled(scale):
+            zoomMode = .Scaled(scale + ZOOM_INTERVAL)
+        default:
+            zoomMode = .Scaled(1 + ZOOM_INTERVAL)
         }
     }
 
     func zoomToActualSize() {
-        if let media = self[selectedMediaID] {
-            media.zoomMode = .ActualSize
-        }
+        zoomMode = .ActualSize
     }
 
     /// Zoom the current media in to fit.
     func zoomToFit() {
-        if let media = self[selectedMediaID] {
-            media.zoomMode = .Fit
-        }
+        zoomMode = .Fit
     }
 
     /// Zoom out of the current media item.
     func zoomOut() {
-        if let media = self[selectedMediaID] {
-            switch media.zoomMode {
-            case let .Scaled(scale):
-                media.zoomMode = .Scaled(scale - ZOOM_INTERVAL)
-            default:
-                media.zoomMode = .Scaled(1 - ZOOM_INTERVAL)
-            }
+        switch zoomMode {
+        case let .Scaled(scale):
+            zoomMode = .Scaled(scale - ZOOM_INTERVAL)
+        default:
+            zoomMode = .Scaled(1 - ZOOM_INTERVAL)
         }
     }
 

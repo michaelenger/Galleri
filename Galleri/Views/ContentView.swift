@@ -24,7 +24,8 @@ struct ContentView: View {
         } detail: {
             DetailView(
                 media: $dataStore[dataStore.selectedMediaID],
-                isFullscreen: $isFullscreen
+                isFullscreen: $isFullscreen,
+                zoomMode: $dataStore.zoomMode
             )
             .toolbar {
                 Button(action: {

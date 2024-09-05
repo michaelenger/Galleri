@@ -19,9 +19,6 @@ import Observation
     /// Image representation of the media item.
     public private(set) var image: NSImage
 
-    /// Zoom mode of the media.
-    var zoomMode: ZoomMode = .Fit
-
     /// Create a new media item based on a given URL.
     convenience init(_ url: URL) {
         self.init(
@@ -30,10 +27,9 @@ import Observation
     }
 
     /// Create a new media item based on a given ID and URL.
-    init(id: Media.ID, url: URL, zoomMode: ZoomMode = .Fit) {
+    init(id: Media.ID, url: URL) {
         self.id = id
         self.url = url
-        self.zoomMode = zoomMode
         self.image = NSImage(contentsOf: url)!
     }
 

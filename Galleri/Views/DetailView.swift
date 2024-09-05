@@ -11,6 +11,7 @@ import SwiftUI
 struct DetailView: View {
     @Binding var media: Media?
     @Binding var isFullscreen: Bool
+    @Binding var zoomMode: ZoomMode
 
     var body: some View {
         VStack {
@@ -18,7 +19,7 @@ struct DetailView: View {
                 if isFullscreen {
                     DynamicZoomView(media: media!)
                 } else {
-                    ScrollableView(media: media!)
+                    ScrollableView(media: media!, zoomMode: $zoomMode)
                 }
             } else {
                 Image(systemName: "photo.stack")
@@ -35,7 +36,8 @@ struct DetailView: View {
 #Preview("With Media") {
     DetailView(
         media: .constant(Media(Bundle.main.url(forResource: "example", withExtension: "jpeg")!)),
-        isFullscreen: .constant(false)
+        isFullscreen: .constant(false),
+        zoomMode: .constant(.Fit)
     )
     .frame(width: 300.0, height: 300.0)
 }
@@ -43,7 +45,8 @@ struct DetailView: View {
 #Preview("No Media") {
     DetailView(
         media: .constant(nil),
-        isFullscreen: .constant(false)
+        isFullscreen: .constant(false),
+        zoomMode: .constant(.Fit)
     )
     .frame(width: 300.0, height: 300.0)
 }
