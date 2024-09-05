@@ -19,7 +19,7 @@ import SwiftUI
     var mediaItems: [Media] = []
 
     /// Zoom mode of the media.
-    var zoomMode: ZoomMode = .Fit
+    var zoomMode: ZoomMode = .Dynamic
 
     /// Whether there are any media.
     var hasMedia: Bool {
@@ -220,29 +220,9 @@ import SwiftUI
         })
     }
 
-    /// Zoom in on the current media item.
-    func zoomIn() {
-        switch zoomMode {
-        case let .Scaled(scale):
-            zoomMode = .Scaled(scale + ZOOM_INTERVAL)
-        default:
-            zoomMode = .Scaled(1 + ZOOM_INTERVAL)
-        }
-    }
-
     /// Set the zoom mode.
     func setZoomMode(_ newZoomMode: ZoomMode) {
         zoomMode = newZoomMode
-    }
-
-    /// Zoom out of the current media item.
-    func zoomOut() {
-        switch zoomMode {
-        case let .Scaled(scale):
-            zoomMode = .Scaled(scale - ZOOM_INTERVAL)
-        default:
-            zoomMode = .Scaled(1 - ZOOM_INTERVAL)
-        }
     }
 
     subscript(mediaID: Media.ID?) -> Media? {

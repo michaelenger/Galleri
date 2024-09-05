@@ -32,7 +32,8 @@ extension ScrollableView {
         switch zoomMode {
         case .ActualSize:
             return media.image.size
-        case .Fit:
+        case .Dynamic:
+            // This shouldn't happen, but default to fitting the media
             return geometry.size
         case .FitHeight:
             var width = media.image.size.width * (geometry.size.height / media.image.size.height)
@@ -54,9 +55,6 @@ extension ScrollableView {
 
             return CGSize(width: width,
                           height: height)
-        case let .Scaled(scale):
-            return CGSize(width: geometry.size.width * scale,
-                          height: geometry.size.height * scale)
         }
     }
 }
@@ -72,13 +70,13 @@ extension ScrollableView {
     .frame(width: 400.0, height: 400.0)
 }
 
-#Preview("Fit") {
+#Preview("Dynamic") {
     ScrollableView(
         media: Media(
             id: "one",
             url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!
         ),
-        zoomMode: .constant(.Fit)
+        zoomMode: .constant(.Dynamic)
     )
     .frame(width: 400.0, height: 400.0)
 }
@@ -101,17 +99,6 @@ extension ScrollableView {
             url: Bundle.main.url(forResource: "longcat", withExtension: "jpg")!
         ),
         zoomMode: .constant(.FitWidth)
-    )
-    .frame(width: 400.0, height: 400.0)
-}
-
-#Preview("Scaled") {
-    ScrollableView(
-        media: Media(
-            id: "one",
-            url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!
-        ),
-        zoomMode: .constant(.Scaled(0.5))
     )
     .frame(width: 400.0, height: 400.0)
 }

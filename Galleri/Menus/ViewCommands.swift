@@ -39,8 +39,8 @@ struct ViewCommands: Commands {
                 .disabled(!dataStore.hasMedia)
                 .keyboardShortcut("8")
 
-                Button("Fit") {
-                    dataStore.setZoomMode(.Fit)
+                Button("Dynamic") {
+                    dataStore.setZoomMode(.Dynamic)
                 }
                 .disabled(!dataStore.hasMedia)
                 .keyboardShortcut("9")

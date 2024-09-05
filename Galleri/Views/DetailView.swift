@@ -16,7 +16,7 @@ struct DetailView: View {
     var body: some View {
         VStack {
             if media != nil {
-                if isFullscreen {
+                if zoomMode == .Dynamic {
                     DynamicZoomView(media: media!)
                 } else {
                     ScrollableView(media: media!, zoomMode: $zoomMode)
@@ -37,7 +37,7 @@ struct DetailView: View {
     DetailView(
         media: .constant(Media(Bundle.main.url(forResource: "example", withExtension: "jpeg")!)),
         isFullscreen: .constant(false),
-        zoomMode: .constant(.Fit)
+        zoomMode: .constant(.Dynamic)
     )
     .frame(width: 300.0, height: 300.0)
 }
@@ -46,7 +46,7 @@ struct DetailView: View {
     DetailView(
         media: .constant(nil),
         isFullscreen: .constant(false),
-        zoomMode: .constant(.Fit)
+        zoomMode: .constant(.Dynamic)
     )
     .frame(width: 300.0, height: 300.0)
 }

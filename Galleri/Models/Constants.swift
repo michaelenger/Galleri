@@ -20,10 +20,9 @@ enum SortOrder: String {
 /// The zoom mode for a media file.
 enum ZoomMode {
     case ActualSize
-    case Fit
+    case Dynamic
     case FitHeight
     case FitWidth
-    case Scaled(CGFloat)
 }
 
 /// Holds the default settings for the app.
