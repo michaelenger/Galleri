@@ -29,23 +29,29 @@ struct ContentView: View {
             )
             .toolbar {
                 Button(action: {
-                    dataStore.zoomIn()
+                    dataStore.goToFirst()
                 }) {
-                    Label("Zoom In", systemImage: "plus.magnifyingglass")
+                    Label("First", systemImage: "arrow.left.to.line")
                 }
-                .disabled(dataStore.selectedMediaID == nil)
+                .disabled(!dataStore.hasMedia)
                 Button(action: {
-                    dataStore.zoomOut()
+                    dataStore.goToPrevious()
                 }) {
-                    Label("Zoom Out", systemImage: "minus.magnifyingglass")
+                    Label("Previous", systemImage: "arrow.left")
                 }
-                .disabled(dataStore.selectedMediaID == nil)
+                .disabled(!dataStore.hasMedia)
                 Button(action: {
-                    dataStore.zoomToFit()
+                    dataStore.goToNext()
                 }) {
-                    Label("Zoom to Fit", systemImage: "arrow.up.left.and.down.right.and.arrow.up.right.and.down.left")
+                    Label("Next", systemImage: "arrow.right")
                 }
-                .disabled(dataStore.selectedMediaID == nil)
+                .disabled(!dataStore.hasMedia)
+                Button(action: {
+                    dataStore.goToLast()
+                }) {
+                    Label("Last", systemImage: "arrow.right.to.line")
+                }
+                .disabled(!dataStore.hasMedia)
             }
             .navigationTitle("")
         }
