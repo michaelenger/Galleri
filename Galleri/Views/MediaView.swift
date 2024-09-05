@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Shows the media (either an image or animated gif).
 struct MediaView: View {
     let media: Media
 

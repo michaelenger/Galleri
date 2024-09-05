@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// Shows a vertical thumbnail list of the media in the current collection.
 struct SidebarView: View {
     @Environment(DataStore.self) private var dataStore
     @Binding var selection: Media.ID?

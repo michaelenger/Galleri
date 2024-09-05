@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// The main view which shows a toggle-able sidebar and the actual media.
 struct ContentView: View {
     @Environment(DataStore.self) private var dataStore
     @State private var columnVisibility = NavigationSplitViewVisibility.automatic

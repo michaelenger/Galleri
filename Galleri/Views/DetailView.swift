@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+/// The detail part of the content view - shows the current media.
 struct DetailView: View {
     @Binding var media: Media?
     @Binding var isFullscreen: Bool
