@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		3904716B29D3972E006F9B64 /* MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3904716A29D3972E006F9B64 /* MediaView.swift */; };
 		3904716D29D397D0006F9B64 /* QLImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3904716C29D397D0006F9B64 /* QLImage.swift */; };
-		39081C1529CB96BA008A270F /* GalleryImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39081C1429CB96BA008A270F /* GalleryImageView.swift */; };
+		39081C1529CB96BA008A270F /* DynamicZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39081C1429CB96BA008A270F /* DynamicZoomView.swift */; };
 		39081C1929CBD311008A270F /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39081C1829CBD311008A270F /* Utils.swift */; };
 		39081C1F29CD0079008A270F /* grid.png in Resources */ = {isa = PBXBuildFile; fileRef = 39081C1E29CD0078008A270F /* grid.png */; };
 		39081C2129CD008E008A270F /* example.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 39081C2029CD008E008A270F /* example.jpeg */; };
@@ -36,7 +36,7 @@
 /* Begin PBXFileReference section */
 		3904716A29D3972E006F9B64 /* MediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaView.swift; sourceTree = "<group>"; };
 		3904716C29D397D0006F9B64 /* QLImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QLImage.swift; sourceTree = "<group>"; };
-		39081C1429CB96BA008A270F /* GalleryImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryImageView.swift; sourceTree = "<group>"; };
+		39081C1429CB96BA008A270F /* DynamicZoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicZoomView.swift; sourceTree = "<group>"; };
 		39081C1829CBD311008A270F /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		39081C1E29CD0078008A270F /* grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grid.png; sourceTree = "<group>"; };
 		39081C2029CD008E008A270F /* example.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = example.jpeg; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 			children = (
 				3950E81C29C75BBE00407635 /* ContentView.swift */,
 				39CA964129C63C780094D2C4 /* DetailView.swift */,
-				39081C1429CB96BA008A270F /* GalleryImageView.swift */,
+				39081C1429CB96BA008A270F /* DynamicZoomView.swift */,
 				39081C2229CD0DBC008A270F /* GoToView.swift */,
 				3904716A29D3972E006F9B64 /* MediaView.swift */,
 				39CA963429C6292C0094D2C4 /* ScrollableImageView.swift */,
@@ -246,7 +246,7 @@
 				394E772129D9AB0300602926 /* EditCommands.swift in Sources */,
 				3950E81F29C75BE600407635 /* SidebarView.swift in Sources */,
 				39CA964229C63C780094D2C4 /* DetailView.swift in Sources */,
-				39081C1529CB96BA008A270F /* GalleryImageView.swift in Sources */,
+				39081C1529CB96BA008A270F /* DynamicZoomView.swift in Sources */,
 				3904716D29D397D0006F9B64 /* QLImage.swift in Sources */,
 				39C8F93D29C6868300EAD3FC /* Extensions.swift in Sources */,
 				39CA963329C6292C0094D2C4 /* GalleriApp.swift in Sources */,

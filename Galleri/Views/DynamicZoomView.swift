@@ -1,5 +1,5 @@
 //
-//  GalleryImageView.swift
+//  DynamicZoomView.swift
 //  Galleri
 //
 //  Created by Michael Enger on 22/03/2023.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// An image view that scales the image to the view and allows you to zoom/pan around using the mouse.
-struct GalleryImageView: View {
+struct DynamicZoomView: View {
     @Environment(DataStore.self) private var dataStore
     @State var mousePosition = CGPoint(x: 0.5, y: 0.5)
     @State var isMouseOver = false
@@ -86,7 +86,7 @@ struct GalleryImageView: View {
     }
 }
 
-extension GalleryImageView {
+extension DynamicZoomView {
     /// Change the scale based on a step variable.
     func changeScale(step: CGFloat) {
         if !isZooming {
@@ -183,9 +183,9 @@ extension GalleryImageView {
     }
 }
 
-struct GalleryImageView_Previews: PreviewProvider {
+struct DynamicZoomView_Previews: PreviewProvider {
     static var previews: some View {
-        GalleryImageView(
+        DynamicZoomView(
             media: Media(Bundle.main.url(forResource: "grid", withExtension: "png")!)
         )
         .frame(width: 600.0, height: 700.0)

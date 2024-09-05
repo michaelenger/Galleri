@@ -15,7 +15,7 @@ struct DetailView: View {
         VStack {
             if media != nil {
                 if isFullscreen {
-                    GalleryImageView(media: media!)
+                    DynamicZoomView(media: media!)
                 } else {
                     ScrollableImageView(media: media!)
                 }
