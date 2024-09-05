@@ -21,6 +21,8 @@ enum SortOrder: String {
 enum ZoomMode {
     case ActualSize
     case Fit
+    case FitHeight
+    case FitWidth
     case Scaled(CGFloat)
 }
 

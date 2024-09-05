@@ -22,28 +22,28 @@ struct ViewCommands: Commands {
         CommandGroup(after: .sidebar) {
             Section {
                 Button("Actual Size") {
-                    dataStore.zoomToActualSize()
+                    dataStore.setZoomMode(.ActualSize)
                 }
                 .disabled(!dataStore.hasMedia)
                 .keyboardShortcut("0")
 
-                Button("Zoom to Fit") {
-                    dataStore.zoomToFit()
+                Button("Fit Height") {
+                    dataStore.setZoomMode(.FitHeight)
+                }
+                .disabled(!dataStore.hasMedia)
+                .keyboardShortcut("8")
+
+                Button("Fit Width") {
+                    dataStore.setZoomMode(.FitWidth)
+                }
+                .disabled(!dataStore.hasMedia)
+                .keyboardShortcut("8")
+
+                Button("Fit") {
+                    dataStore.setZoomMode(.Fit)
                 }
                 .disabled(!dataStore.hasMedia)
                 .keyboardShortcut("9")
-
-                Button("Zoom In") {
-                    dataStore.zoomIn()
-                }
-                .disabled(!dataStore.hasMedia)
-                .keyboardShortcut("+")
-
-                Button("Zoom Out") {
-                    dataStore.zoomOut()
-                }
-                .disabled(!dataStore.hasMedia)
-                .keyboardShortcut("-")
             }
             Section {
                 Picker("Sort By", selection: $sortBy.onChange(sortByChanged)) {

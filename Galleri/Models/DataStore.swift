@@ -230,13 +230,9 @@ import SwiftUI
         }
     }
 
-    func zoomToActualSize() {
-        zoomMode = .ActualSize
-    }
-
-    /// Zoom the current media in to fit.
-    func zoomToFit() {
-        zoomMode = .Fit
+    /// Set the zoom mode.
+    func setZoomMode(_ newZoomMode: ZoomMode) {
+        zoomMode = newZoomMode
     }
 
     /// Zoom out of the current media item.
