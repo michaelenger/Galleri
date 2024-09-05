@@ -5,20 +5,21 @@
 //  Created by Michael Enger on 18/03/2023.
 //
 
+import Observation
 import SwiftUI
 
 /// Data store for the application. Expected to be used as an EnvironmentObject.
-class DataStore: NSObject, NSApplicationDelegate, ObservableObject {
-    @AppStorage("sortBy") var sortBy = DefaultSettings.sortBy
+@Observable class DataStore: NSObject, NSApplicationDelegate {
+    @ObservationIgnored @AppStorage("sortBy") var sortBy = DefaultSettings.sortBy
 
     /// Whether to show the go to dialog.
-    @Published var showGoTo = false
+    var showGoTo = false
 
     /// ID of the currently selected media item.
-    @Published var selectedMediaID: Media.ID?
+    var selectedMediaID: Media.ID?
 
     /// List of media.
-    @Published var mediaItems: [Media] = []
+    var mediaItems: [Media] = []
 
     /// Whether there are any media.
     var hasMedia: Bool {

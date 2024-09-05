@@ -9,7 +9,7 @@ import SwiftUI
 
 /// Contains the commands for the File menu.
 struct FileCommands: Commands {
-    @ObservedObject var dataStore: DataStore
+    var dataStore: DataStore
 
     var body: some Commands {
         CommandGroup(after: .newItem) {

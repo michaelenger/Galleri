@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Observation
 
 /// A media item.
-class Media: Identifiable, ObservableObject {
+@Observable class Media: Identifiable {
     /// ID of the media item,
     let id: String
 
@@ -19,7 +20,7 @@ class Media: Identifiable, ObservableObject {
     public private(set) var image: NSImage
 
     /// Zoom mode of the media.
-    @Published var zoomMode: ZoomMode = .Fit
+    var zoomMode: ZoomMode = .Fit
 
     /// Create a new media item based on a given URL.
     convenience init(_ url: URL) {

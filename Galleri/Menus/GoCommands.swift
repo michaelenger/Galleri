@@ -9,7 +9,7 @@ import SwiftUI
 
 /// Contains the commands for the Go menu.
 struct GoCommands: Commands {
-    @ObservedObject var dataStore: DataStore
+    var dataStore: DataStore
 
     var body: some Commands {
         CommandMenu("Go") {

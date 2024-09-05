@@ -9,7 +9,7 @@ import SwiftUI
 
 /// An image view that scales the image to the view and allows you to zoom/pan around using the mouse.
 struct GalleryImageView: View {
-    @EnvironmentObject var dataStore: DataStore
+    @Environment(DataStore.self) private var dataStore
     @State var mousePosition = CGPoint(x: 0.5, y: 0.5)
     @State var isMouseOver = false
     @State var zoomScale: CGFloat = 1.5

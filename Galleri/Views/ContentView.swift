@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var dataStore: DataStore
+    @Environment(DataStore.self) private var dataStore
     @State private var columnVisibility = NavigationSplitViewVisibility.automatic
     @State private var isFullscreen = false
 
@@ -16,6 +16,8 @@ struct ContentView: View {
     var willExitFullScreen = NotificationCenter.default.publisher(for: NSWindow.willExitFullScreenNotification)
 
     var body: some View {
+        @Bindable var dataStore = dataStore
+
         NavigationSplitView(columnVisibility: $columnVisibility) {
             SidebarView(selection: $dataStore.selectedMediaID)
         } detail: {
@@ -74,7 +76,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .environmentObject({ () -> DataStore in
+            .environment({ () -> DataStore in
                 let envObj = DataStore()
                 envObj.loadMedia(from: [
                     Bundle.main.url(forResource: "example", withExtension: "jpeg")!,

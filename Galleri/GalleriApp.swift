@@ -14,7 +14,7 @@ struct GalleriApp: App {
     var body: some Scene {
         Window("Galleri", id: "main") {
             ContentView()
-                .environmentObject(dataStore)
+                .environment(dataStore)
                 .onAppear {
                     NSWindow.allowsAutomaticWindowTabbing = false
                 }

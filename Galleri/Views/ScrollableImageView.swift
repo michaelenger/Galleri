@@ -9,7 +9,7 @@ import SwiftUI
 
 /// An image view that displays the image and allows you to scroll, if necessary.
 struct ScrollableImageView: View {
-    @ObservedObject var media: Media
+    var media: Media
 
     var body: some View {
         GeometryReader { geometry in

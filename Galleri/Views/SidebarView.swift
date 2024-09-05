@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SidebarView: View {
-    @EnvironmentObject var dataStore: DataStore
+    @Environment(DataStore.self) private var dataStore
     @Binding var selection: Media.ID?
 
     var body: some View {
@@ -53,7 +53,7 @@ struct SidebarView: View {
 struct SidebarView_Previews: PreviewProvider {
     static var previews: some View {
         SidebarView(selection: .constant("one"))
-            .environmentObject({ () -> DataStore in
+            .environment({ () -> DataStore in
                 let dataStore = DataStore()
                 dataStore.mediaItems = [
                     Media(

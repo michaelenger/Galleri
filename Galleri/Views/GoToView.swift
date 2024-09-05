@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GoToView: View {
     @Environment(\.dismiss) private var dismiss
-    @EnvironmentObject var dataStore: DataStore
+    @Environment(DataStore.self) private var dataStore
 
     @State var imageText: String = ""
 
@@ -51,7 +51,7 @@ extension GoToView {
 struct GoToView_Previews: PreviewProvider {
     static var previews: some View {
         GoToView()
-            .environmentObject({ () -> DataStore in
+            .environment({ () -> DataStore in
                 let envObj = DataStore()
                 envObj.loadMedia(from: [
                     Bundle.main.url(forResource: "example", withExtension: "jpeg")!,

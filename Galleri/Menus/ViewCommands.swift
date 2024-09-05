@@ -9,7 +9,7 @@ import SwiftUI
 
 /// Contains the commands for the View menu.
 struct ViewCommands: Commands {
-    @ObservedObject var dataStore: DataStore
+    var dataStore: DataStore
 
     @AppStorage("sortBy") var sortBy = DefaultSettings.sortBy
 
