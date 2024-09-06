@@ -16,6 +16,11 @@ import Observation
     /// URL used to load the media item.
     let url: URL
 
+    /// Filename of the media item.
+    var filename: String {
+        get { return url.lastPathComponent }
+    }
+
     /// Image representation of the media item.
     public private(set) var image: NSImage
 

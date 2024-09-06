@@ -28,32 +28,24 @@ struct ContentView: View {
                 zoomMode: $dataStore.zoomMode
             )
             .toolbar {
-                Button(action: {
-                    dataStore.goToFirst()
-                }) {
-                    Label("First", systemImage: "arrow.left.to.line")
+                ToolbarItem(placement: .navigation) {
+                    HStack {
+                        Button(action: {
+                            dataStore.goToPrevious()
+                        }) {
+                            Label("Previous", systemImage: "arrow.left")
+                        }
+                        .disabled(!dataStore.hasMedia)
+                        Button(action: {
+                            dataStore.goToNext()
+                        }) {
+                            Label("Next", systemImage: "arrow.right")
+                        }
+                        .disabled(!dataStore.hasMedia)
+                    }
                 }
-                .disabled(!dataStore.hasMedia)
-                Button(action: {
-                    dataStore.goToPrevious()
-                }) {
-                    Label("Previous", systemImage: "arrow.left")
-                }
-                .disabled(!dataStore.hasMedia)
-                Button(action: {
-                    dataStore.goToNext()
-                }) {
-                    Label("Next", systemImage: "arrow.right")
-                }
-                .disabled(!dataStore.hasMedia)
-                Button(action: {
-                    dataStore.goToLast()
-                }) {
-                    Label("Last", systemImage: "arrow.right.to.line")
-                }
-                .disabled(!dataStore.hasMedia)
             }
-            .navigationTitle("")
+            .navigationTitle(dataStore[dataStore.selectedMediaID]?.filename ?? "")
         }
         .toolbar(isFullscreen ? .hidden : .visible)
         .addCustomHotkeys([
