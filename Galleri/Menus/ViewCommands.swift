@@ -11,7 +11,7 @@ import SwiftUI
 struct ViewCommands: Commands {
     var dataStore: DataStore
 
-    @AppStorage("sortBy") var sortBy = DefaultSettings.sortBy
+    @AppStorage("sortBy") var sortBy = DEFAULT_SORT_BY
 
     /// Side-effects for when the soryBy setting changes.
     func sortByChanged(to value: SortOrder) {

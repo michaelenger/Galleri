@@ -10,7 +10,7 @@ import SwiftUI
 
 /// Data store for the application. Expected to be used as an EnvironmentObject.
 @Observable class DataStore: NSObject, NSApplicationDelegate {
-    @ObservationIgnored @AppStorage("sortBy") var sortBy = DefaultSettings.sortBy
+    @ObservationIgnored @AppStorage("sortBy") var sortBy = DEFAULT_SORT_BY
 
     /// ID of the currently selected media item.
     var selectedMediaID: Media.ID?

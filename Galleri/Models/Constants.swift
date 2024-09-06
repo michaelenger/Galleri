@@ -26,10 +26,9 @@ enum ZoomMode {
 }
 
 /// Holds the default settings for the app.
-enum DefaultSettings {
-    static let sortBy = SortOrder.name
-}
+let DEFAULT_SORT_BY = SortOrder.name
 
+/// Zoom values.
 let ZOOM_INTERVAL: CGFloat = 0.1
 let SCALE_INTERVAL: CGFloat = 0.1
 let SCALE_MIN: CGFloat = 1.0
