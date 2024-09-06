@@ -11,8 +11,8 @@ let SCROLLBAR_SIZE: CGFloat = 15
 
 /// An image view that displays the media and allows you to scroll, if necessary.
 struct ScrollableView: View {
-    var media: Media
-    @Binding var scalingMode: ScalingMode
+    let media: Media
+    let scalingMode: ScalingMode
 
     var body: some View {
         GeometryReader { geometry in
@@ -65,7 +65,7 @@ extension ScrollableView {
             id: "one",
             url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!
         ),
-        scalingMode: .constant(.ActualSize)
+        scalingMode: .ActualSize
     )
     .frame(width: 400.0, height: 400.0)
 }
@@ -76,7 +76,7 @@ extension ScrollableView {
             id: "one",
             url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!
         ),
-        scalingMode: .constant(.Dynamic)
+        scalingMode: .Dynamic
     )
     .frame(width: 400.0, height: 400.0)
 }
@@ -87,7 +87,7 @@ extension ScrollableView {
             id: "one",
             url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!
         ),
-        scalingMode: .constant(.FitHeight)
+        scalingMode: .FitHeight
     )
     .frame(width: 400.0, height: 400.0)
 }
@@ -98,7 +98,7 @@ extension ScrollableView {
             id: "one",
             url: Bundle.main.url(forResource: "longcat", withExtension: "jpg")!
         ),
-        scalingMode: .constant(.FitWidth)
+        scalingMode: .FitWidth
     )
     .frame(width: 400.0, height: 400.0)
 }

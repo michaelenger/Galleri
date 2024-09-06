@@ -9,9 +9,9 @@ import SwiftUI
 
 /// The detail part of the content view - shows the current media.
 struct DetailView: View {
-    @Binding var media: Media?
-    @Binding var isFullscreen: Bool
-    @Binding var scalingMode: ScalingMode
+    let media: Media?
+    let isFullscreen: Bool
+    let scalingMode: ScalingMode
 
     var body: some View {
         VStack {
@@ -19,7 +19,7 @@ struct DetailView: View {
                 if scalingMode == .Dynamic {
                     DynamicZoomView(media: media!)
                 } else {
-                    ScrollableView(media: media!, scalingMode: $scalingMode)
+                    ScrollableView(media: media!, scalingMode: scalingMode)
                 }
             } else {
                 Image(systemName: "photo.stack")
@@ -35,18 +35,18 @@ struct DetailView: View {
 
 #Preview("With Media") {
     DetailView(
-        media: .constant(Media(Bundle.main.url(forResource: "example", withExtension: "jpeg")!)),
-        isFullscreen: .constant(false),
-        scalingMode: .constant(.Dynamic)
+        media: Media(Bundle.main.url(forResource: "example", withExtension: "jpeg")!),
+        isFullscreen: false,
+        scalingMode: .Dynamic
     )
     .frame(width: 300.0, height: 300.0)
 }
 
 #Preview("No Media") {
     DetailView(
-        media: .constant(nil),
-        isFullscreen: .constant(false),
-        scalingMode: .constant(.Dynamic)
+        media: nil,
+        isFullscreen: false,
+        scalingMode: .Dynamic
     )
     .frame(width: 300.0, height: 300.0)
 }

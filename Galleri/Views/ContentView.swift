@@ -23,9 +23,9 @@ struct ContentView: View {
             SidebarView(selection: $dataStore.selectedMediaID)
         } detail: {
             DetailView(
-                media: $dataStore[dataStore.selectedMediaID],
-                isFullscreen: $isFullscreen,
-                scalingMode: $dataStore.scalingMode
+                media: dataStore[dataStore.selectedMediaID],
+                isFullscreen: isFullscreen,
+                scalingMode: dataStore.scalingMode
             )
             .toolbar {
                 ToolbarItem(placement: .navigation) {
