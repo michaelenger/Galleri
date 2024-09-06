@@ -26,12 +26,14 @@ struct ViewCommands: Commands {
         CommandGroup(after: .sidebar) {
             Section {
                 Picker("Zoom Mode", selection: zoomModeBinding) {
-                    Text("Dynamic").tag(ZoomMode.Dynamic)
+                    Text("Dynamic Zoom").tag(ZoomMode.Dynamic)
                     Text("Actual Size").tag(ZoomMode.ActualSize)
                     Text("Fit Width").tag(ZoomMode.FitWidth)
                     Text("Fit Height").tag(ZoomMode.FitHeight)
                 }
                 .pickerStyle(.inline)
+                .labelsHidden()
+
                 Picker("Sort By", selection: $sortBy.onChange(sortByChanged)) {
                     Text("Name").tag(SortOrder.name)
                     Text("Path").tag(SortOrder.path)

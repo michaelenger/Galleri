@@ -44,6 +44,22 @@ struct ContentView: View {
                         .disabled(!dataStore.hasMedia)
                     }
                 }
+                ToolbarItem(placement: .primaryAction) {
+                    HStack {
+                        Menu {
+                            Picker("Zoom Mode", selection: $dataStore.zoomMode) {
+                                Text("Dynamic Zoom").tag(ZoomMode.Dynamic)
+                                Text("Actual Size").tag(ZoomMode.ActualSize)
+                                Text("Fit Width").tag(ZoomMode.FitWidth)
+                                Text("Fit Height").tag(ZoomMode.FitHeight)
+                            }
+                            .pickerStyle(.inline)
+                            .labelsHidden()
+                        } label: {
+                            Label("Zoom Mode", systemImage: "square.arrowtriangle.4.outward")
+                        }
+                    }
+                }
             }
             .navigationTitle(dataStore[dataStore.selectedMediaID]?.filename ?? "")
         }
