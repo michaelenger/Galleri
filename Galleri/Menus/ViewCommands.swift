@@ -19,33 +19,19 @@ struct ViewCommands: Commands {
     }
 
     var body: some Commands {
+        let zoomModeBinding = Binding<ZoomMode>(
+            get: { dataStore.zoomMode },
+            set: { dataStore.zoomMode = $0 })
+
         CommandGroup(after: .sidebar) {
             Section {
-                Button("Actual Size") {
-                    dataStore.setZoomMode(.ActualSize)
+                Picker("Zoom Mode", selection: zoomModeBinding) {
+                    Text("Dynamic").tag(ZoomMode.Dynamic)
+                    Text("Actual Size").tag(ZoomMode.ActualSize)
+                    Text("Fit Width").tag(ZoomMode.FitWidth)
+                    Text("Fit Height").tag(ZoomMode.FitHeight)
                 }
-                .disabled(!dataStore.hasMedia)
-                .keyboardShortcut("0")
-
-                Button("Fit Height") {
-                    dataStore.setZoomMode(.FitHeight)
-                }
-                .disabled(!dataStore.hasMedia)
-                .keyboardShortcut("8")
-
-                Button("Fit Width") {
-                    dataStore.setZoomMode(.FitWidth)
-                }
-                .disabled(!dataStore.hasMedia)
-                .keyboardShortcut("8")
-
-                Button("Dynamic") {
-                    dataStore.setZoomMode(.Dynamic)
-                }
-                .disabled(!dataStore.hasMedia)
-                .keyboardShortcut("9")
-            }
-            Section {
+                .pickerStyle(.inline)
                 Picker("Sort By", selection: $sortBy.onChange(sortByChanged)) {
                     Text("Name").tag(SortOrder.name)
                     Text("Path").tag(SortOrder.path)
