@@ -25,7 +25,7 @@ struct ContentView: View {
             DetailView(
                 media: $dataStore[dataStore.selectedMediaID],
                 isFullscreen: $isFullscreen,
-                zoomMode: $dataStore.zoomMode
+                scalingMode: $dataStore.scalingMode
             )
             .toolbar {
                 ToolbarItem(placement: .navigation) {
@@ -35,29 +35,32 @@ struct ContentView: View {
                         }) {
                             Label("Previous", systemImage: "arrow.left")
                         }
+                        .help("Previous")
                         .disabled(!dataStore.hasMedia)
                         Button(action: {
                             dataStore.goToNext()
                         }) {
                             Label("Next", systemImage: "arrow.right")
                         }
+                        .help("Next")
                         .disabled(!dataStore.hasMedia)
                     }
                 }
                 ToolbarItem(placement: .primaryAction) {
                     HStack {
                         Menu {
-                            Picker("Zoom Mode", selection: $dataStore.zoomMode) {
-                                Text("Dynamic Zoom").tag(ZoomMode.Dynamic)
-                                Text("Actual Size").tag(ZoomMode.ActualSize)
-                                Text("Fit Width").tag(ZoomMode.FitWidth)
-                                Text("Fit Height").tag(ZoomMode.FitHeight)
+                            Picker("Scaling Mode", selection: $dataStore.scalingMode) {
+                                Text("Dynamic").tag(ScalingMode.Dynamic)
+                                Text("Actual Size").tag(ScalingMode.ActualSize)
+                                Text("Fit Width").tag(ScalingMode.FitWidth)
+                                Text("Fit Height").tag(ScalingMode.FitHeight)
                             }
                             .pickerStyle(.inline)
                             .labelsHidden()
                         } label: {
-                            Label("Zoom Mode", systemImage: "square.arrowtriangle.4.outward")
+                            Label("Scaling Mode", systemImage: "square.arrowtriangle.4.outward")
                         }
+                        .help("Choose scaling mode")
                     }
                 }
             }

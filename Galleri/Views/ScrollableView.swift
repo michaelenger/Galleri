@@ -12,7 +12,7 @@ let SCROLLBAR_SIZE: CGFloat = 15
 /// An image view that displays the media and allows you to scroll, if necessary.
 struct ScrollableView: View {
     var media: Media
-    @Binding var zoomMode: ZoomMode
+    @Binding var scalingMode: ScalingMode
 
     var body: some View {
         GeometryReader { geometry in
@@ -29,7 +29,7 @@ struct ScrollableView: View {
 extension ScrollableView {
     /// Get the desired frame size based on the image's zoom mode.
     func desiredFrameSize(geometry: GeometryProxy) -> CGSize {
-        switch zoomMode {
+        switch scalingMode {
         case .ActualSize:
             return media.image.size
         case .Dynamic:
@@ -65,7 +65,7 @@ extension ScrollableView {
             id: "one",
             url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!
         ),
-        zoomMode: .constant(.ActualSize)
+        scalingMode: .constant(.ActualSize)
     )
     .frame(width: 400.0, height: 400.0)
 }
@@ -76,7 +76,7 @@ extension ScrollableView {
             id: "one",
             url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!
         ),
-        zoomMode: .constant(.Dynamic)
+        scalingMode: .constant(.Dynamic)
     )
     .frame(width: 400.0, height: 400.0)
 }
@@ -87,7 +87,7 @@ extension ScrollableView {
             id: "one",
             url: Bundle.main.url(forResource: "example", withExtension: "jpeg")!
         ),
-        zoomMode: .constant(.FitHeight)
+        scalingMode: .constant(.FitHeight)
     )
     .frame(width: 400.0, height: 400.0)
 }
@@ -98,7 +98,7 @@ extension ScrollableView {
             id: "one",
             url: Bundle.main.url(forResource: "longcat", withExtension: "jpg")!
         ),
-        zoomMode: .constant(.FitWidth)
+        scalingMode: .constant(.FitWidth)
     )
     .frame(width: 400.0, height: 400.0)
 }

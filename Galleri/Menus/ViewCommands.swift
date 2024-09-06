@@ -19,17 +19,17 @@ struct ViewCommands: Commands {
     }
 
     var body: some Commands {
-        let zoomModeBinding = Binding<ZoomMode>(
-            get: { dataStore.zoomMode },
-            set: { dataStore.zoomMode = $0 })
+        let scalingModeBinding = Binding<ScalingMode>(
+            get: { dataStore.scalingMode },
+            set: { dataStore.scalingMode = $0 })
 
         CommandGroup(after: .sidebar) {
             Section {
-                Picker("Zoom Mode", selection: zoomModeBinding) {
-                    Text("Dynamic Zoom").tag(ZoomMode.Dynamic)
-                    Text("Actual Size").tag(ZoomMode.ActualSize)
-                    Text("Fit Width").tag(ZoomMode.FitWidth)
-                    Text("Fit Height").tag(ZoomMode.FitHeight)
+                Picker("Scaling Mode", selection: scalingModeBinding) {
+                    Text("Dynamic").tag(ScalingMode.Dynamic)
+                    Text("Actual Size").tag(ScalingMode.ActualSize)
+                    Text("Fit Width").tag(ScalingMode.FitWidth)
+                    Text("Fit Height").tag(ScalingMode.FitHeight)
                 }
                 .pickerStyle(.inline)
                 .labelsHidden()

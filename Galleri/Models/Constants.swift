@@ -17,8 +17,8 @@ enum SortOrder: String {
     case size = "size"
 }
 
-/// The zoom mode for a media file.
-enum ZoomMode {
+/// The scaling mode when displaying the media file.
+enum ScalingMode {
     case ActualSize
     case Dynamic
     case FitHeight

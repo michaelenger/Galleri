@@ -18,8 +18,8 @@ import SwiftUI
     /// List of media.
     var mediaItems: [Media] = []
 
-    /// Zoom mode of the media.
-    var zoomMode: ZoomMode = .Dynamic
+    /// Scaling mode of the media.
+    var scalingMode: ScalingMode = .Dynamic
 
     /// Whether there are any media.
     var hasMedia: Bool {
@@ -218,11 +218,6 @@ import SwiftUI
                 return a.url.path(percentEncoded: false) < b.url.path(percentEncoded: false)
             }
         })
-    }
-
-    /// Set the zoom mode.
-    func setZoomMode(_ newZoomMode: ZoomMode) {
-        zoomMode = newZoomMode
     }
 
     subscript(mediaID: Media.ID?) -> Media? {
