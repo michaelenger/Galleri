@@ -7,14 +7,12 @@
 
 import Foundation
 
-/// Order which the media can be sorted by.
-enum SortOrder: String {
-    case date = "date"
-    case kind = "kind"
-    case name = "name"
-    case path = "path"
-    case random = "random"
-    case size = "size"
+/// The rotation mode when displaying the media file.
+enum RotationMode {
+    case Original
+    case RotatedRight
+    case RotatedLeft
+    case UpsideDown
 }
 
 /// The scaling mode when displaying the media file.
@@ -23,6 +21,16 @@ enum ScalingMode {
     case Dynamic
     case FitHeight
     case FitWidth
+}
+
+/// Order which the media can be sorted by.
+enum SortOrder: String {
+    case date = "date"
+    case kind = "kind"
+    case name = "name"
+    case path = "path"
+    case random = "random"
+    case size = "size"
 }
 
 /// Holds the default settings for the app.

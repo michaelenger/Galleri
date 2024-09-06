@@ -19,6 +19,9 @@ struct ViewCommands: Commands {
     }
 
     var body: some Commands {
+        let rotationModeBinding = Binding<RotationMode>(
+            get: { dataStore.rotationMode },
+            set: { dataStore.rotationMode = $0 })
         let scalingModeBinding = Binding<ScalingMode>(
             get: { dataStore.scalingMode },
             set: { dataStore.scalingMode = $0 })
@@ -30,6 +33,15 @@ struct ViewCommands: Commands {
                     Text("Actual Size").tag(ScalingMode.ActualSize)
                     Text("Fit Width").tag(ScalingMode.FitWidth)
                     Text("Fit Height").tag(ScalingMode.FitHeight)
+                }
+                .pickerStyle(.inline)
+                .labelsHidden()
+
+                Picker("Rotation Mode", selection: rotationModeBinding) {
+                    Text("Original").tag(RotationMode.Original)
+                    Text("Rotated Right").tag(RotationMode.RotatedLeft)
+                    Text("Rotated Left").tag(RotationMode.RotatedRight)
+                    Text("Upside Down").tag(RotationMode.UpsideDown)
                 }
                 .pickerStyle(.inline)
                 .labelsHidden()

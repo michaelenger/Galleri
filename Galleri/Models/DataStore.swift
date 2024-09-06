@@ -18,6 +18,9 @@ import SwiftUI
     /// List of media.
     var mediaItems: [Media] = []
 
+    /// Rotation mode of the media.
+    var rotationMode: RotationMode = .Original
+
     /// Scaling mode of the media.
     var scalingMode: ScalingMode = .Dynamic
 
@@ -185,6 +188,20 @@ import SwiftUI
             } else {
                 selectedMediaID = nil
             }
+        }
+    }
+
+    /// Change the rotation mode by rotating left.
+    func rotateLeft() {
+        rotationMode = switch rotationMode {
+        case .Original:
+            .RotatedLeft
+        case .RotatedRight:
+            .Original
+        case .RotatedLeft:
+            .UpsideDown
+        case .UpsideDown:
+            .RotatedRight
         }
     }
 

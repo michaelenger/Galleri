@@ -25,7 +25,8 @@ struct ContentView: View {
             DetailView(
                 media: dataStore[dataStore.selectedMediaID],
                 isFullscreen: isFullscreen,
-                scalingMode: dataStore.scalingMode
+                scalingMode: dataStore.scalingMode,
+                rotationMode: dataStore.rotationMode
             )
             .toolbar {
                 ToolbarItem(placement: .navigation) {
@@ -48,6 +49,14 @@ struct ContentView: View {
                 }
                 ToolbarItem(placement: .primaryAction) {
                     HStack {
+                        Button(action: {
+                            dataStore.rotateLeft()
+                        }) {
+                            Label("Rotate Left", systemImage: "rotate.left")
+                        }
+                        .help("Rotate left")
+                        .keyboardShortcut("r")
+                        .disabled(!dataStore.hasMedia)
                         Menu {
                             Picker("Scaling Mode", selection: $dataStore.scalingMode) {
                                 Text("Dynamic").tag(ScalingMode.Dynamic)
