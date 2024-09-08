@@ -14,7 +14,6 @@ Basic image gallery for macOS, with support for animated GIFs.
 * Get an actual icon
 * "Comic mode" - show two images next to each other
 * Timed slideshow
-* Rotate the view
 * Show image title in windowed mode
 * Show a progress bar when in fullscreen mode
 * Increase support for media
