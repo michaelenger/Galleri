@@ -59,6 +59,20 @@ struct ContentView: View {
                         .help("Rotate left")
                         .keyboardShortcut("r")
                         .disabled(!dataStore.hasMedia)
+
+                        Menu {
+                            Picker("View Mode", selection: $dataStore.viewMode) {
+                                Text("Single").tag(ViewMode.Single)
+                                Text("Double Left-to-Right").tag(ViewMode.DoubleLTR)
+                                Text("Double Right-to-Left").tag(ViewMode.DoubleRTL)
+                            }
+                            .pickerStyle(.inline)
+                            .labelsHidden()
+                        } label: {
+                            Label("View Mode", systemImage: "rectangle.split.2x1")
+                        }
+                        .help("Choose view mode")
+                        
                         Menu {
                             Picker("Scaling Mode", selection: $dataStore.scalingMode) {
                                 Text("Dynamic").tag(ScalingMode.Dynamic)
@@ -124,7 +138,7 @@ struct ContentView: View {
     }
 }
 
-#Preview {
+#Preview("Single View") {
     ContentView()
         .environment({ () -> DataStore in
             let envObj = DataStore()
@@ -132,6 +146,19 @@ struct ContentView: View {
                 Bundle.main.url(forResource: "example", withExtension: "jpeg")!,
                 Bundle.main.url(forResource: "grid", withExtension: "png")!,
             ])
+            return envObj
+        }() )
+}
+
+#Preview("Double View") {
+    ContentView()
+        .environment({ () -> DataStore in
+            let envObj = DataStore()
+            envObj.loadMedia(from: [
+                Bundle.main.url(forResource: "example", withExtension: "jpeg")!,
+                Bundle.main.url(forResource: "grid", withExtension: "png")!,
+            ])
+            envObj.viewMode = .DoubleLTR
             return envObj
         }() )
 }

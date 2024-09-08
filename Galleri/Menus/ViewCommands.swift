@@ -25,6 +25,9 @@ struct ViewCommands: Commands {
         let scalingModeBinding = Binding<ScalingMode>(
             get: { dataStore.scalingMode },
             set: { dataStore.scalingMode = $0 })
+        let viewModeBinding = Binding<ViewMode>(
+            get: { dataStore.viewMode },
+            set: { dataStore.viewMode = $0 })
 
         CommandGroup(after: .sidebar) {
             Section {
@@ -42,6 +45,14 @@ struct ViewCommands: Commands {
                     Text("Rotated Right").tag(RotationMode.RotatedLeft)
                     Text("Rotated Left").tag(RotationMode.RotatedRight)
                     Text("Upside Down").tag(RotationMode.UpsideDown)
+                }
+                .pickerStyle(.inline)
+                .labelsHidden()
+
+                Picker("View Mode", selection: viewModeBinding) {
+                    Text("Single").tag(ViewMode.Single)
+                    Text("Double Left-to-Right").tag(ViewMode.DoubleLTR)
+                    Text("Double Right-to-Left").tag(ViewMode.DoubleRTL)
                 }
                 .pickerStyle(.inline)
                 .labelsHidden()

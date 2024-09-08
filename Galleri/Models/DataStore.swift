@@ -24,9 +24,32 @@ import SwiftUI
     /// Scaling mode of the media.
     var scalingMode: ScalingMode = .Dynamic
 
+    /// Media view mode.
+    var viewMode: ViewMode = .Single
+
     /// The current media to be viewed.
     var currentMediaItem: ViewableMedia? {
-        get { hasMedia ? ViewableMedia(self[selectedMediaID]!) : nil }
+        get {
+            if !hasMedia {
+                return nil
+            }
+
+            return switch viewMode {
+            case .Single:
+                ViewableMedia(self[selectedMediaID]!)
+            case .DoubleLTR:
+                ViewableMedia(
+                    self[selectedMediaID]!,
+                    mediaItems[getMediaIndex(offset: 1)]
+                )
+            case .DoubleRTL:
+                ViewableMedia(
+                    mediaItems[getMediaIndex(offset: 1)],
+                    self[selectedMediaID]!
+                )
+            }
+
+        }
     }
 
     /// Whether there are any media.
@@ -40,17 +63,7 @@ import SwiftUI
             return // nothing to do here
         }
 
-        var currentIndex = mediaItems.firstIndex(where: { $0.id == selectedMediaID }) ?? 0
-
-        currentIndex += indexChangeAmount
-
-        if currentIndex >= mediaItems.count {
-            currentIndex -= mediaItems.count
-        } else if currentIndex < 0 {
-            currentIndex += mediaItems.count
-        }
-
-        changeMediaIndex(to: currentIndex)
+        changeMediaIndex(to: getMediaIndex(offset: indexChangeAmount))
     }
 
     /// Change the current media index to a specified value.
@@ -82,6 +95,21 @@ import SwiftUI
         }
 
         return mediaUrls
+    }
+
+    /// Get the index of a media item offset by an amount.
+    private func getMediaIndex(offset: Int) -> Int {
+        var mediaIndex = mediaItems.firstIndex(where: { $0.id == selectedMediaID }) ?? 0
+
+        mediaIndex += offset
+
+        if mediaIndex >= mediaItems.count {
+            mediaIndex -= mediaItems.count
+        } else if mediaIndex < 0 {
+            mediaIndex += mediaItems.count
+        }
+
+        return mediaIndex
     }
 
     /// Shift a media item from one index to another.

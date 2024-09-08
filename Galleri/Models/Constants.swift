@@ -38,6 +38,13 @@ enum SortOrder: String {
     case random = "random"
 }
 
+/// Mode to view media in - single or double.
+enum ViewMode {
+    case Single
+    case DoubleLTR
+    case DoubleRTL
+}
+
 /// Holds the default settings for the app.
 let DEFAULT_SORT_BY = SortOrder.name
 
