@@ -24,6 +24,16 @@ import Observation
     /// Image representation of the media item.
     public private(set) var image: NSImage
 
+    /// Whether the media item is an animated image.
+    var type: MediaType {
+        get { return url.isAnimatedImage ? .AnimatedImage : .StaticImage }
+    }
+
+    /// Size of the media item.
+    var size: CGSize {
+        get { return image.size }
+    }
+
     /// Create a new media item based on a given URL.
     convenience init(_ url: URL) {
         self.init(

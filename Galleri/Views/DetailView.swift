@@ -79,7 +79,7 @@ struct DetailView: View {
                             .frame(width: frame.width, height: frame.height)
                             .offset(x: xOffset, y: yOffset)
                     case .Fill:
-                        let fillFrame = getFillFrame(content: media.image.size, container: frame)
+                        let fillFrame = getFillFrame(content: media.size, container: frame)
 
                         ScrollView([.horizontal, .vertical]) {
                             MediaView(media: media)

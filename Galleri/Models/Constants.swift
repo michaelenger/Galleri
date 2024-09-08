@@ -7,6 +7,12 @@
 
 import Foundation
 
+/// The type of media.
+enum MediaType {
+    case AnimatedImage
+    case StaticImage
+}
+
 /// The rotation mode when displaying the media file.
 enum RotationMode {
     case Original

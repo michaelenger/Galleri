@@ -24,12 +24,12 @@ struct DynamicZoomView: View {
                 let offset = imageOffset(
                     frameSize: geometry.size,
                     imageSize: CGSize(
-                        width: media.image.size.width * scale,
-                        height: media.image.size.height * scale))
+                        width: media.size.width * scale,
+                        height: media.size.height * scale))
 
                 MediaView(media: media)
-                    .frame(width: media.image.size.width * scale,
-                           height: media.image.size.height * scale)
+                    .frame(width: media.size.width * scale,
+                           height: media.size.height * scale)
                     .offset(x: offset.x, y: offset.y)
 
 //                Text("\(mousePosition.x) x \(mousePosition.y)")
@@ -97,18 +97,18 @@ extension DynamicZoomView {
 
     /// Scale for filling the frame with the image.
     func imageFillScale(frameSize: CGSize) -> CGFloat {
-        let wRatio = frameSize.width / media.image.size.width
-        let hRatio = frameSize.height / media.image.size.height
+        let wRatio = frameSize.width / media.size.width
+        let hRatio = frameSize.height / media.size.height
 
         return max(wRatio, hRatio)
     }
 
     /// Scale for fitting the image in the frame.
     func imageFitScale(frameSize: CGSize) -> CGFloat {
-        let wRatio = frameSize.width / media.image.size.width
-        let hRatio = frameSize.height / media.image.size.height
+        let wRatio = frameSize.width / media.size.width
+        let hRatio = frameSize.height / media.size.height
 
-        if media.image.size.height * wRatio <= frameSize.height {
+        if media.size.height * wRatio <= frameSize.height {
             return wRatio
         } else {
             return hRatio

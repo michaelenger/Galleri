@@ -12,9 +12,10 @@ struct MediaView: View {
     let media: Media
 
     var body: some View {
-        if media.url.isAnimatedImage {
+        switch media.type {
+        case .AnimatedImage:
             QLImage(url: media.url)
-        } else {
+        case .StaticImage:
             Image(nsImage: media.image)
                 .resizable()
                 .scaledToFit()
@@ -27,5 +28,9 @@ struct MediaView: View {
 }
 
 #Preview("Static PNG") {
+    MediaView(media: Media(Bundle.main.url(forResource: "grid", withExtension: "png")!))
+}
+
+#Preview("Two Static Images") {
     MediaView(media: Media(Bundle.main.url(forResource: "grid", withExtension: "png")!))
 }
