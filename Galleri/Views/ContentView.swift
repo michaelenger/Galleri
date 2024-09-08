@@ -25,7 +25,7 @@ struct ContentView: View {
             SidebarView(selection: $dataStore.selectedMediaID)
         } detail: {
             DetailView(
-                media: dataStore[dataStore.selectedMediaID],
+                media: dataStore.currentMediaItem,
                 isFullscreen: isFullscreen,
                 scalingMode: dataStore.scalingMode,
                 rotationMode: dataStore.rotationMode

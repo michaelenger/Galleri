@@ -15,7 +15,7 @@ struct DynamicZoomView: View {
     @State var isZooming = false
     @State var eventMonitor: Any? = nil
 
-    var media: Media
+    var media: ViewableMedia
 
     var body: some View {
         GeometryReader { geometry in
@@ -165,7 +165,7 @@ extension DynamicZoomView {
 
 #Preview {
     DynamicZoomView(
-        media: Media(Bundle.main.url(forResource: "grid", withExtension: "png")!)
+        media: ViewableMedia(Media(Bundle.main.url(forResource: "grid", withExtension: "png")!))
     )
     .frame(width: 600.0, height: 700.0)
 }

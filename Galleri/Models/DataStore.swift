@@ -24,6 +24,11 @@ import SwiftUI
     /// Scaling mode of the media.
     var scalingMode: ScalingMode = .Dynamic
 
+    /// The current media to be viewed.
+    var currentMediaItem: ViewableMedia? {
+        get { hasMedia ? ViewableMedia(self[selectedMediaID]!) : nil }
+    }
+
     /// Whether there are any media.
     var hasMedia: Bool {
         get { return mediaItems.count != 0 }

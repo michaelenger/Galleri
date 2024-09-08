@@ -11,7 +11,7 @@ let SCROLLBAR_SIZE: CGFloat = 15
 
 /// The detail part of the content view - shows the current media.
 struct DetailView: View {
-    let media: Media?
+    let media: ViewableMedia?
     let isFullscreen: Bool
     let scalingMode: ScalingMode
     let rotationMode: RotationMode
@@ -104,7 +104,7 @@ struct DetailView: View {
 
 #Preview("Fit Original") {
     DetailView(
-        media: Media(Bundle.main.url(forResource: "example", withExtension: "jpeg")!),
+        media: ViewableMedia(Media(Bundle.main.url(forResource: "example", withExtension: "jpeg")!)),
         isFullscreen: false,
         scalingMode: .Fit,
         rotationMode: .Original
@@ -114,7 +114,7 @@ struct DetailView: View {
 
 #Preview("Dynamic Rotated Right") {
     DetailView(
-        media: Media(Bundle.main.url(forResource: "longcat", withExtension: "jpg")!),
+        media: ViewableMedia(Media(Bundle.main.url(forResource: "longcat", withExtension: "jpg")!)),
         isFullscreen: false,
         scalingMode: .Dynamic,
         rotationMode: .RotatedRight
@@ -124,7 +124,7 @@ struct DetailView: View {
 
 #Preview("Fill Rotated Left") {
     DetailView(
-        media: Media(Bundle.main.url(forResource: "longcat", withExtension: "jpg")!),
+        media: ViewableMedia(Media(Bundle.main.url(forResource: "longcat", withExtension: "jpg")!)),
         isFullscreen: false,
         scalingMode: .Fill,
         rotationMode: .RotatedLeft
@@ -134,7 +134,7 @@ struct DetailView: View {
 
 #Preview("Actual Size Upside Down") {
     DetailView(
-        media: Media(Bundle.main.url(forResource: "example", withExtension: "jpeg")!),
+        media: ViewableMedia(Media(Bundle.main.url(forResource: "example", withExtension: "jpeg")!)),
         isFullscreen: false,
         scalingMode: .ActualSize,
         rotationMode: .UpsideDown
