@@ -9,7 +9,6 @@ import SwiftUI
 
 /// An image view that scales the image to the view and allows you to zoom/pan around using the mouse.
 struct DynamicZoomView: View {
-    @Environment(DataStore.self) private var dataStore
     @State var mousePosition = CGPoint(x: 0.5, y: 0.5)
     @State var isMouseOver = false
     @State var zoomScale: CGFloat = 1.0
@@ -43,8 +42,6 @@ struct DynamicZoomView: View {
             }
             .onAppear(perform: {
                 eventMonitor = NSEvent.addLocalMonitorForEvents(matching: [
-                    .leftMouseDown,
-                    .rightMouseDown,
                     .otherMouseDown,
                     .scrollWheel,
                     .mouseMoved
@@ -54,10 +51,6 @@ struct DynamicZoomView: View {
                     }
 
                     switch event.type {
-                    case .leftMouseDown:
-                        goToNext()
-                    case .rightMouseDown:
-                        goToPrevious()
                     case .otherMouseDown:
                         toggleZoom()
                     case .scrollWheel:
@@ -100,16 +93,6 @@ extension DynamicZoomView {
         if zoomScale == 1 && isZooming {
             toggleZoom()  // it's effectively off
         }
-    }
-
-    /// Go to the next media.
-    func goToNext() {
-        dataStore.goToNext()
-    }
-
-    /// Go to the previous media.
-    func goToPrevious() {
-        dataStore.goToPrevious()
     }
 
     /// Scale for filling the frame with the image.
@@ -185,11 +168,4 @@ extension DynamicZoomView {
         media: Media(Bundle.main.url(forResource: "grid", withExtension: "png")!)
     )
     .frame(width: 600.0, height: 700.0)
-    .environment({ () -> DataStore in
-        let envObj = DataStore()
-        envObj.loadMedia(from: [
-            Bundle.main.url(forResource: "grid", withExtension: "png")!,
-        ])
-        return envObj
-    }() )
 }

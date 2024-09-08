@@ -120,13 +120,6 @@ struct DetailView: View {
         rotationMode: .RotatedRight
     )
     .frame(width: 800.0, height: 600.0)
-    .environment({ () -> DataStore in
-        let envObj = DataStore()
-        envObj.loadMedia(from: [
-            Bundle.main.url(forResource: "longcat", withExtension: "jpg")!,
-        ])
-        return envObj
-    }() )
 }
 
 #Preview("Fill Rotated Left") {

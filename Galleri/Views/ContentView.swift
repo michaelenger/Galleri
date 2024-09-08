@@ -11,7 +11,9 @@ import SwiftUI
 struct ContentView: View {
     @Environment(DataStore.self) private var dataStore
     @State private var columnVisibility = NavigationSplitViewVisibility.automatic
+    @State private var eventMonitor: Any? = nil
     @State private var isFullscreen = false
+    @State private var isMouseOver = false
 
     var willEnterFullScreen = NotificationCenter.default.publisher(for: NSWindow.willEnterFullScreenNotification)
     var willExitFullScreen = NotificationCenter.default.publisher(for: NSWindow.willExitFullScreenNotification)
@@ -74,6 +76,30 @@ struct ContentView: View {
                 }
             }
             .navigationTitle(dataStore[dataStore.selectedMediaID]?.filename ?? "")
+            .onHover { over in
+                isMouseOver = over
+            }
+            .onAppear(perform: {
+                eventMonitor = NSEvent.addLocalMonitorForEvents(matching: [
+                    .leftMouseDown,
+                    .rightMouseDown
+                ]) { event in
+                    if !isMouseOver {
+                        return event  // ignore all mouse events if not over the view
+                    }
+
+                    switch event.type {
+                    case .leftMouseDown:
+                        dataStore.goToNext()
+                    case .rightMouseDown:
+                        dataStore.goToPrevious()
+                    default:
+                        logger.error("Unhandled event type: \(event.type.rawValue)")
+                    }
+
+                    return event
+                }
+            })
         }
         .toolbar(isFullscreen ? .hidden : .visible)
         .addCustomHotkeys([
