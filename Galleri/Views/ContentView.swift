@@ -84,7 +84,7 @@ struct ContentView: View {
                     .leftMouseDown,
                     .rightMouseDown
                 ]) { event in
-                    if !isMouseOver {
+                    if !isMouseOver || !isFullscreen {
                         return event  // ignore all mouse events if not over the view
                     }
 
