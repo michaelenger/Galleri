@@ -12,13 +12,17 @@ struct MediaView: View {
     let media: ViewableMedia
 
     var body: some View {
-        switch media.media.type {
-        case .AnimatedImage:
-            QLImage(url: media.media.url)
-        case .StaticImage:
-            Image(nsImage: media.media.image)
-                .resizable()
-                .scaledToFit()
+        HStack(spacing: 0) {
+            ForEach(media.mediaItems) { item in
+                switch item.type {
+                case .AnimatedImage:
+                    QLImage(url: item.url)
+                case .StaticImage:
+                    Image(nsImage: item.image)
+                        .resizable()
+                        .scaledToFit()
+                }
+            }
         }
     }
 }
@@ -32,5 +36,13 @@ struct MediaView: View {
 }
 
 #Preview("Two Static Images") {
-    MediaView(media: ViewableMedia(Media(Bundle.main.url(forResource: "grid", withExtension: "png")!)))
+    MediaView(media: ViewableMedia(
+        Media(Bundle.main.url(forResource: "grid", withExtension: "png")!),
+        Media(Bundle.main.url(forResource: "grid", withExtension: "png")!)))
+}
+
+#Preview("Combined Images") {
+    MediaView(media: ViewableMedia(
+        Media(Bundle.main.url(forResource: "squid", withExtension: "gif")!),
+        Media(Bundle.main.url(forResource: "grid", withExtension: "png")!)))
 }
