@@ -30,7 +30,6 @@ enum SortOrder: String {
     case name = "name"
     case path = "path"
     case random = "random"
-    case size = "size"
 }
 
 /// Holds the default settings for the app.

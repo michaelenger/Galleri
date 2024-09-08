@@ -43,10 +43,4 @@ import Observation
         let attributes = try? FileManager.default.attributesOfItem(atPath: self.url.path(percentEncoded: false))
         return attributes?[FileAttributeKey.creationDate] as! Date?
     }
-
-    /// Size of the media file.
-    var size: Float {
-        let attributes = try? FileManager.default.attributesOfItem(atPath: self.url.path(percentEncoded: false))
-        return (attributes?[FileAttributeKey.size] as! NSNumber).floatValue
-    }
 }

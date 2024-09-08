@@ -228,8 +228,6 @@ import SwiftUI
                 return a.url.lastPathComponent < b.url.lastPathComponent
             case .path:
                 return a.url.path(percentEncoded: false) < b.url.path(percentEncoded: false)
-            case .size:
-                return a.size < b.size
             default:
                 logger.error("Unhandled sort order: \(self.sortBy.rawValue)")
                 return a.url.path(percentEncoded: false) < b.url.path(percentEncoded: false)

@@ -50,7 +50,6 @@ struct ViewCommands: Commands {
                     Text("Name").tag(SortOrder.name)
                     Text("Path").tag(SortOrder.path)
                     Text("Date").tag(SortOrder.date)
-                    Text("Size").tag(SortOrder.size)
                     Text("Kind").tag(SortOrder.kind)
                     Text("Random").tag(SortOrder.random)
                 }
