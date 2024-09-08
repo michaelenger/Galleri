@@ -38,6 +38,5 @@ let DEFAULT_SORT_BY = SortOrder.name
 
 /// Zoom values.
 let ZOOM_INTERVAL: CGFloat = 0.1
-let SCALE_INTERVAL: CGFloat = 0.1
-let SCALE_MIN: CGFloat = 1.0
-let SCALE_MAX: CGFloat = 10.0
+let ZOOM_MIN: CGFloat = 1.0
+let ZOOM_MAX: CGFloat = 10.0

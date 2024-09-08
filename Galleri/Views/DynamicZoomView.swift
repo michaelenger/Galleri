@@ -12,7 +12,7 @@ struct DynamicZoomView: View {
     @Environment(DataStore.self) private var dataStore
     @State var mousePosition = CGPoint(x: 0.5, y: 0.5)
     @State var isMouseOver = false
-    @State var zoomScale: CGFloat = 1.5
+    @State var zoomScale: CGFloat = 1.0
     @State var isZooming = false
     @State var eventMonitor: Any? = nil
 
@@ -21,21 +21,18 @@ struct DynamicZoomView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .topLeading) {
-                if isZooming {
-                    let scale = imageFitScale(frameSize: geometry.size) * zoomScale
-                    let offset = imageOffset(
-                        frameSize: geometry.size,
-                        imageSize: CGSize(
-                            width: media.image.size.width * scale,
-                            height: media.image.size.height * scale))
+                let scale = imageFitScale(frameSize: geometry.size) * zoomScale
+                let offset = imageOffset(
+                    frameSize: geometry.size,
+                    imageSize: CGSize(
+                        width: media.image.size.width * scale,
+                        height: media.image.size.height * scale))
 
-                    MediaView(media: media)
-                        .frame(width: media.image.size.width * scale,
-                               height: media.image.size.height * scale)
-                        .offset(x: offset.x, y: offset.y)
-                } else {
-                    MediaView(media: media)
-                }
+                MediaView(media: media)
+                    .frame(width: media.image.size.width * scale,
+                           height: media.image.size.height * scale)
+                    .offset(x: offset.x, y: offset.y)
+
 //                Text("\(mousePosition.x) x \(mousePosition.y)")
 //                    .foregroundColor(.black)
 //                    .background(.white)
@@ -98,7 +95,7 @@ extension DynamicZoomView {
             zoomScale = 1.0
         }
 
-        zoomScale = clamp(zoomScale + (SCALE_INTERVAL * step), min: SCALE_MIN, max: SCALE_MAX)
+        zoomScale = clamp(zoomScale + (ZOOM_INTERVAL * step), min: ZOOM_MIN, max: ZOOM_MAX)
 
         if zoomScale == 1 && isZooming {
             toggleZoom()  // it's effectively off
