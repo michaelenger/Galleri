@@ -10,11 +10,9 @@ Basic image gallery for macOS, with support for animated GIFs.
 * Upgrade to new version of SwiftUI/AppKit: https://developer.apple.com/videos/play/wwdc2023/10148/
 * Check accessibility: https://developer.apple.com/videos/play/wwdc2023-10035
 * Get an actual icon
-* "Comic mode" - show two images next to each other
 * Timed slideshow
 * Show a progress bar when in fullscreen mode
 * Increase support for media
   * Video?
   * PDFs?
   * CBZ/ZIP archives
-* Allow mouse-click navigation in non-dynamic mode
