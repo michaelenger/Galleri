@@ -31,8 +31,8 @@ struct ViewCommands: Commands {
                 Picker("Scaling Mode", selection: scalingModeBinding) {
                     Text("Dynamic").tag(ScalingMode.Dynamic)
                     Text("Actual Size").tag(ScalingMode.ActualSize)
-                    Text("Fit Width").tag(ScalingMode.FitWidth)
-                    Text("Fit Height").tag(ScalingMode.FitHeight)
+                    Text("Fit to View").tag(ScalingMode.Fit)
+                    Text("Fill View").tag(ScalingMode.Fill)
                 }
                 .pickerStyle(.inline)
                 .labelsHidden()

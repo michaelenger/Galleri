@@ -19,8 +19,8 @@ enum RotationMode {
 enum ScalingMode {
     case ActualSize
     case Dynamic
-    case FitHeight
-    case FitWidth
+    case Fit
+    case Fill
 }
 
 /// Order which the media can be sorted by.
