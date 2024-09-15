@@ -57,7 +57,6 @@ struct ContentView: View {
                             Label("Rotate Left", systemImage: "rotate.left")
                         }
                         .help("Rotate left")
-                        .keyboardShortcut("r")
                         .disabled(!dataStore.hasMedia)
 
                         Menu {
@@ -75,10 +74,10 @@ struct ContentView: View {
                         
                         Menu {
                             Picker("Scaling Mode", selection: $dataStore.scalingMode) {
-                                Text("Dynamic").tag(ScalingMode.Dynamic)
                                 Text("Actual Size").tag(ScalingMode.ActualSize)
-                                Text("Fit to View").tag(ScalingMode.Fit)
+                                Text("Dynamic").tag(ScalingMode.Dynamic)
                                 Text("Fill View").tag(ScalingMode.Fill)
+                                Text("Fit to View").tag(ScalingMode.Fit)
                             }
                             .pickerStyle(.inline)
                             .labelsHidden()

@@ -129,6 +129,32 @@ import SwiftUI
         loadMedia(from: urls)
     }
 
+    /// Change the current scaling mode.
+    func changeScalingMode() {
+        switch scalingMode {
+        case .ActualSize:
+            scalingMode = .Dynamic
+        case .Dynamic:
+            scalingMode = .Fill
+        case .Fill:
+            scalingMode = .Fit
+        case .Fit:
+            scalingMode = .ActualSize
+        }
+    }
+
+    /// Change the current view mode.
+    func changeViewMode() {
+        switch viewMode {
+        case .Single:
+            viewMode = .DoubleLTR
+        case .DoubleLTR:
+            viewMode = .DoubleRTL
+        case .DoubleRTL:
+            viewMode = .Single
+        }
+    }
+
     /// Go to the first media.
     func goToFirst() {
         changeMediaIndex(to: 0)

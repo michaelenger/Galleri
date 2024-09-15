@@ -32,10 +32,10 @@ struct ViewCommands: Commands {
         CommandGroup(after: .sidebar) {
             Section {
                 Picker("Scaling Mode", selection: scalingModeBinding) {
-                    Text("Dynamic").tag(ScalingMode.Dynamic)
                     Text("Actual Size").tag(ScalingMode.ActualSize)
-                    Text("Fit to View").tag(ScalingMode.Fit)
+                    Text("Dynamic").tag(ScalingMode.Dynamic)
                     Text("Fill View").tag(ScalingMode.Fill)
+                    Text("Fit to View").tag(ScalingMode.Fit)
                 }
                 .pickerStyle(.inline)
                 .labelsHidden()
@@ -56,7 +56,22 @@ struct ViewCommands: Commands {
                 }
                 .pickerStyle(.inline)
                 .labelsHidden()
-
+            }
+            Section {
+                Button("Change Scaling Mode") {
+                    dataStore.changeScalingMode()
+                }
+                .keyboardShortcut("s")
+                Button("Change Rotation Mode") {
+                    dataStore.rotateLeft()
+                }
+                .keyboardShortcut("r")
+                Button("Change View Mode") {
+                    dataStore.changeViewMode()
+                }
+                .keyboardShortcut("d")
+            }
+            Section {
                 Picker("Sort By", selection: $sortBy.onChange(sortByChanged)) {
                     Text("Name").tag(SortOrder.name)
                     Text("Path").tag(SortOrder.path)
