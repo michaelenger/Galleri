@@ -22,10 +22,7 @@ struct ContentView: View {
     var body: some View {
         @Bindable var dataStore = dataStore
 
-        NavigationSplitView(columnVisibility: $columnVisibility) {
-            SidebarView(selection: $dataStore.selectedMediaID)
-        } detail: {
-            MainView(dataStore: dataStore, isFullscreen: isFullscreen, isEditing: isEditing)
+        MainView(dataStore: dataStore, isFullscreen: isFullscreen, isEditing: isEditing)
             .toolbar {
                 ToolbarItem(placement: .navigation) {
                     HStack {
@@ -120,27 +117,26 @@ struct ContentView: View {
                     return event
                 }
             })
-        }
-        .toolbar(isFullscreen ? .hidden : .visible)
-        .addCustomHotkeys([
-            HotkeyCombination(keyBase: [], key: .kVK_LeftArrow ) {
-                dataStore.goToPrevious()
-            },
-            HotkeyCombination(keyBase: [], key: .kVK_RightArrow) {
-                dataStore.goToNext()
-            },
-            HotkeyCombination(keyBase: [], key: .kVK_Space) {
-                dataStore.goToNext()
-            }
-        ])
-        .onReceive(willEnterFullScreen, perform: { _ in
-            isFullscreen = true
-            columnVisibility = .detailOnly
-        })
-        .onReceive(willExitFullScreen, perform: { _ in
-            isFullscreen = false
-            columnVisibility = .automatic
-        })
+            .toolbar(isFullscreen ? .hidden : .visible)
+            .addCustomHotkeys([
+                HotkeyCombination(keyBase: [], key: .kVK_LeftArrow ) {
+                    dataStore.goToPrevious()
+                },
+                HotkeyCombination(keyBase: [], key: .kVK_RightArrow) {
+                    dataStore.goToNext()
+                },
+                HotkeyCombination(keyBase: [], key: .kVK_Space) {
+                    dataStore.goToNext()
+                }
+            ])
+            .onReceive(willEnterFullScreen, perform: { _ in
+                isFullscreen = true
+                columnVisibility = .detailOnly
+            })
+            .onReceive(willExitFullScreen, perform: { _ in
+                isFullscreen = false
+                columnVisibility = .automatic
+            })
     }
 }
 
