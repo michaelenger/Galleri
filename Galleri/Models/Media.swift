@@ -9,7 +9,12 @@ import SwiftUI
 import Observation
 
 /// A media item.
-@Observable class Media: Identifiable {
+@Observable final class Media: Equatable, Identifiable {
+    /// Equatable function.
+    static func == (lhs: Media, rhs: Media) -> Bool {
+        return lhs.id == rhs.id
+    }
+
     /// ID of the media item,
     let id: String
 
