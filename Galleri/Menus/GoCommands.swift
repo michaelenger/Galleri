@@ -12,10 +12,6 @@ struct GoCommands: Commands {
     var dataStore: DataStore
 
     var body: some Commands {
-        let advanceByTwoBinding = Binding<Bool>(
-            get: { dataStore.shouldAdvanceByTwo },
-            set: { dataStore.shouldAdvanceByTwo = $0 })
-
         CommandMenu("Go") {
             Section {
                 Button("Next") {
@@ -41,13 +37,6 @@ struct GoCommands: Commands {
                 }
                 .disabled(!dataStore.hasMedia)
                 .keyboardShortcut(.end, modifiers: [])
-            }
-            Section {
-                Toggle(isOn: advanceByTwoBinding) {
-                  // 2
-                  Text("Advance by Two")
-                }
-                .keyboardShortcut("d")
             }
         }
     }

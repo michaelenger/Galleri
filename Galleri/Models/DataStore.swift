@@ -12,9 +12,6 @@ import SwiftUI
 @Observable class DataStore: NSObject, NSApplicationDelegate {
     @ObservationIgnored @AppStorage("sortBy") var sortBy = DEFAULT_SORT_BY
 
-    /// Whether to advance the items by two steps.
-    var shouldAdvanceByTwo: Bool = false
-
     /// ID of the currently selected media item.
     var selectedMediaID: Media.ID?
 
@@ -145,13 +142,13 @@ import SwiftUI
 
     /// Go to the next media.
     func goToNext() {
-        let amount = shouldAdvanceByTwo ? 2 : 1
+        let amount = viewMode == .Single ? 1 : 2
         changeMediaIndex(by: amount)
     }
 
     /// Go to the previous media.
     func goToPrevious() {
-        let amount = shouldAdvanceByTwo ? 2 : 1
+        let amount = viewMode == .Single ? 1 : 2
         changeMediaIndex(by: -amount)
     }
 
