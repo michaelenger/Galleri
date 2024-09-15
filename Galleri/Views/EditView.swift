@@ -10,17 +10,16 @@ import SwiftUI
 struct EditView: View {
     @Environment(DataStore.self) private var dataStore
 
-    @State
-    private var active: Media?
+    @State private var active: Media?
 
     var body: some View {
         ScrollView(.vertical) {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 200, maximum: 500), spacing: 20)], spacing: 20) {
                 ReorderableForEach(dataStore.mediaItems, active: $active) { item in
-                    Image(nsImage: item.image)
-                        .resizable()
-                        .scaledToFit()
-                        .border(.secondary)
+                    GridItemView(item: item, isSelected: item.id == dataStore.selectedMediaID)
+                        .onTapGesture {
+                            dataStore.selectedMediaID = item.id
+                        }
                         .contextMenu {
                             Button(action: {
                                 dataStore.removeMedia(item.id)
@@ -33,6 +32,27 @@ struct EditView: View {
         }
         .scrollContentBackground(.hidden)
         .reorderableForEachContainer(active: $active)
+    }
+}
+
+struct GridItemView: View {
+    @Environment(\.colorScheme) var colorScheme
+
+    let item: Media
+    let isSelected: Bool
+
+    var body: some View {
+        let opacity = isSelected ? 1 : 0.2
+
+        Image(nsImage: item.image)
+            .resizable()
+            .scaledToFit()
+            .background(colorScheme == .dark ? nil : Color.white)
+            .padding(2)
+            .overlay(
+                RoundedRectangle(cornerRadius: 2)
+                    .stroke(colorScheme == .dark ? .white.opacity(opacity) : .black.opacity(opacity), lineWidth: 2)
+            )
     }
 }
 

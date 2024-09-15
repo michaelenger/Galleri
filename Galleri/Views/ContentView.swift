@@ -14,6 +14,7 @@ struct ContentView: View {
     @State private var eventMonitor: Any? = nil
     @State private var isFullscreen = false
     @State private var isMouseOver = false
+    @State private var isEditing = false
 
     var willEnterFullScreen = NotificationCenter.default.publisher(for: NSWindow.willEnterFullScreenNotification)
     var willExitFullScreen = NotificationCenter.default.publisher(for: NSWindow.willExitFullScreenNotification)
@@ -24,12 +25,7 @@ struct ContentView: View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
             SidebarView(selection: $dataStore.selectedMediaID)
         } detail: {
-            DetailView(
-                media: dataStore.currentMediaItem,
-                isFullscreen: isFullscreen,
-                scalingMode: dataStore.scalingMode,
-                rotationMode: dataStore.rotationMode
-            )
+            MainView(dataStore: dataStore, isFullscreen: isFullscreen, isEditing: isEditing)
             .toolbar {
                 ToolbarItem(placement: .navigation) {
                     HStack {
@@ -71,7 +67,7 @@ struct ContentView: View {
                             Label("View Mode", systemImage: "rectangle.split.2x1")
                         }
                         .help("Choose view mode")
-                        
+
                         Menu {
                             Picker("Scaling Mode", selection: $dataStore.scalingMode) {
                                 Text("Actual Size").tag(ScalingMode.ActualSize)
@@ -82,9 +78,20 @@ struct ContentView: View {
                             .pickerStyle(.inline)
                             .labelsHidden()
                         } label: {
-                            Label("Scaling Mode", systemImage: "square.arrowtriangle.4.outward")
+                            Label("Scaling Mode", systemImage: "arrow.up.left.and.arrow.down.right.square")
                         }
                         .help("Choose scaling mode")
+
+                        Divider()
+
+                        Button(action: {
+                            isEditing.toggle()
+                        }) {
+
+                            Label("Reorder Mode", systemImage: "cursorarrow.and.square.on.square.dashed")
+                                .help("Reorder the media")
+                                .foregroundColor(isEditing ? .blue : .secondary)
+                        }
                     }
                 }
             }
@@ -134,6 +141,26 @@ struct ContentView: View {
             isFullscreen = false
             columnVisibility = .automatic
         })
+    }
+}
+
+/// The actual content view, either viewing or deleting.
+struct MainView: View {
+    let dataStore: DataStore
+    let isFullscreen: Bool
+    let isEditing: Bool
+
+    var body: some View {
+        if isEditing {
+            EditView()
+        } else {
+            DetailView(
+                media: dataStore.currentMediaItem,
+                isFullscreen: isFullscreen,
+                scalingMode: dataStore.scalingMode,
+                rotationMode: dataStore.rotationMode
+            )
+        }
     }
 }
 
