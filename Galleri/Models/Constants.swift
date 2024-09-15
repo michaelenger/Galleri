@@ -29,6 +29,14 @@ enum ScalingMode {
     case Fit
 }
 
+/// Amount of time to wait between switching slides.
+enum SlideshowTime {
+    case OneSecond
+    case ThreeSeconds
+    case FiveSeconds
+    case TenSeconds
+}
+
 /// Order which the media can be sorted by.
 enum SortOrder: String {
     case date = "date"

@@ -12,6 +12,15 @@ import SwiftUI
 @Observable class DataStore: NSObject, NSApplicationDelegate {
     @ObservationIgnored @AppStorage("sortBy") var sortBy = DEFAULT_SORT_BY
 
+    /// Wheter the slideshow is active.
+    private var privateSlideshowActive: Bool = false
+
+    /// Amount of time to wait between slides.
+    private var privateSlideshowTime: SlideshowTime = .ThreeSeconds
+
+    /// The timer keeping the slideshow active.
+    private var slideshowTimer: Timer? = nil
+
     /// ID of the currently selected media item.
     var selectedMediaID: Media.ID?
 
@@ -20,6 +29,50 @@ import SwiftUI
 
     /// Rotation mode of the media.
     var rotationMode: RotationMode = .Original
+
+    /// Whether the slideshow is active.
+    var slideshowActive: Bool {
+        get {
+            privateSlideshowActive
+        }
+        set(newSetting) {
+            slideshowTimer?.invalidate() // stop any active timer
+            slideshowTimer = nil
+            privateSlideshowActive = newSetting
+
+            if privateSlideshowActive {
+                let interval = switch privateSlideshowTime {
+                case .OneSecond:
+                    1.0
+                case .ThreeSeconds:
+                    3.0
+                case .FiveSeconds:
+                    5.0
+                case .TenSeconds:
+                    10.0
+                }
+
+                slideshowTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _timer in
+                    self.goToNext()
+                }
+            }
+        }
+    }
+
+    /// Amount of time to wait between slides.
+    var slideshowTime: SlideshowTime {
+        get {
+            privateSlideshowTime
+        }
+        set(newSetting) {
+            if newSetting == slideshowTime {
+                return
+            }
+
+            privateSlideshowTime = newSetting
+            slideshowActive = privateSlideshowActive // reset the timer
+        }
+    }
 
     /// Scaling mode of the media.
     var scalingMode: ScalingMode = .Dynamic
