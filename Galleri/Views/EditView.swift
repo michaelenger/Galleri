@@ -9,13 +9,22 @@ import SwiftUI
 
 struct EditView: View {
     @Environment(DataStore.self) private var dataStore
-
     @State private var active: Media?
 
     var body: some View {
+        let activeBinding = Binding<Media?>(
+            get: { active },
+            set: {
+                active = $0
+
+                if active != nil {
+                    dataStore.selectedMediaID = active!.id
+                }
+            })
+
         ScrollView(.vertical) {
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 200, maximum: 500), spacing: 20)], spacing: 20) {
-                ReorderableForEach(dataStore.mediaItems, active: $active) { item in
+                ReorderableForEach(dataStore.mediaItems, active: activeBinding) { item in
                     GridItemView(item: item, isSelected: item.id == dataStore.selectedMediaID)
                         .onTapGesture {
                             dataStore.selectedMediaID = item.id
@@ -31,7 +40,7 @@ struct EditView: View {
             }.padding()
         }
         .scrollContentBackground(.hidden)
-        .reorderableForEachContainer(active: $active)
+        .reorderableForEachContainer(active: activeBinding)
     }
 }
 
